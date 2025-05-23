@@ -1,9 +1,20 @@
-### 纯python补环境框架
+## 纯python补环境框架
 
-平台：`win` （暂未编译Linux和Mac版本）
+#### 系统要求
 
-版本：`python311`
+- Python 3.10 或更高版本
+- 支持的平台：Windows, Linux
 
-依赖：`pip install gevent karellen-geventws`
+#### 依赖
+`pip install git+https://github.com/ConlinH/pyv8`
 
+#### 测试运行
+
+```bash
+git clone https://github.com/ConlinH/pyv8env.git
+
+cd pyv8env
+
+python test.py
+```
 

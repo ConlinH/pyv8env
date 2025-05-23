@@ -16,10 +16,10 @@ class DOMError(Exception):
         val = self._attr.get('name')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_dom_error.py -> DOMError.name -> get attr')
+        logger.debug(f'patch -> v8_dom_error.py -> DOMError.name -> get attr')
 
     def get_message(self):
         val = self._attr.get('message')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_dom_error.py -> DOMError.message -> get attr')
+        logger.debug(f'patch -> v8_dom_error.py -> DOMError.message -> get attr')

@@ -20,13 +20,13 @@ class EventTarget:
     )
 
     def fn_addEventListener(self, *args):
-        logger.info(f'patch -> v8_event_target.py -> EventTarget.addEventListener{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_event_target.py -> EventTarget.addEventListener{tuple(args)} -> method')
 
-    def fn_dispatchEvent(self, *args):
-        logger.info(f'patch -> v8_event_target.py -> EventTarget.dispatchEvent{tuple(args)} -> method')
+    def fn_dispatchEvent(self, *args, capture=False):
+        logger.debug(f'patch -> v8_event_target.py -> EventTarget.dispatchEvent{tuple(args)} -> method')
 
     def fn_removeEventListener(self, *args):
-        logger.info(f'patch -> v8_event_target.py -> EventTarget.removeEventListener{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_event_target.py -> EventTarget.removeEventListener{tuple(args)} -> method')
 
     def fn_on(self, *args):
-        logger.info(f'patch -> v8_event_target.py -> EventTarget.on{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_event_target.py -> EventTarget.on{tuple(args)} -> method')

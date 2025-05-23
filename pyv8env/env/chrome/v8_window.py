@@ -9,34 +9,32 @@ class Window(WindowProperties):
 
     def __init__(self, *args, **kw):
         super(Window, self).__init__(*args, **kw)
+
     TEMPORARY = 0
     PERSISTENT = 1
 
     def __v8_index_get__(self, *args):
-        logger.info('patch -> v8_window.py -> Window.__v8_index_get__')
-            
+        logger.debug('patch -> v8_window.py -> Window.__v8_index_get__')
+
     def __v8_index_set__(self, *args):
-        logger.info('patch -> v8_window.py -> Window.__v8_index_set__')
-            
+        logger.debug('patch -> v8_window.py -> Window.__v8_index_set__')
+
     def __v8_index_del__(self, *args):
-        logger.info('patch -> v8_window.py -> Window.__v8_index_del__')
-            
+        logger.debug('patch -> v8_window.py -> Window.__v8_index_del__')
+
     def __v8_index_enum__(self, *args):
-        logger.info('patch -> v8_window.py -> Window.__v8_index_enum__')
-            
+        logger.debug('patch -> v8_window.py -> Window.__v8_index_enum__')
+
     def __v8_index_definer__(self, *args):
-        logger.info('patch -> v8_window.py -> Window.__v8_index_definer__')
-            
+        logger.debug('patch -> v8_window.py -> Window.__v8_index_definer__')
+
     def __v8_index_desc__(self, *args):
-        logger.info('patch -> v8_window.py -> Window.__v8_index_desc__')
-            
-    __v8_attribute__ = (
-        # (attr_name, get_cb, set_cb, CallbackType, FlagLocation, V8Attribute, FlagReceiverCheck, 
+        logger.debug('patch -> v8_window.py -> Window.__v8_index_desc__')
+
+    __v8_attribute__ = (# (attr_name, get_cb, set_cb, CallbackType, FlagLocation, V8Attribute, FlagReceiverCheck,
         # FlagCrossOriginCheck, FlagCrossOriginCheck, SideEffectType)
-        ("window", "get_window", None, 0, 0, 4, 0, 1, 0, 1),
-        ("self", "get_self", "set_self", 0, 0, 0, 0, 1, 0, 1),
-        ("document", "get_document", None, 0, 0, 4, 0, 0, 0, 1),
-        ("name", "get_name", "set_name", 0, 0, 0, 0, 0, 0, 1),
+        ("window", "get_window", None, 0, 0, 4, 0, 1, 0, 1), ("self", "get_self", "set_self", 0, 0, 0, 0, 1, 0, 1),
+        ("document", "get_document", None, 0, 0, 4, 0, 0, 0, 1), ("name", "get_name", "set_name", 0, 0, 0, 0, 0, 0, 1),
         ("location", "get_location", "set_location", 0, 0, 4, 0, 1, 1, 1),
         ("customElements", "get_customElements", None, 0, 0, 0, 0, 0, 0, 1),
         ("history", "get_history", None, 0, 0, 0, 0, 0, 0, 1),
@@ -50,8 +48,7 @@ class Window(WindowProperties):
         ("status", "get_status", "set_status", 0, 0, 0, 0, 0, 0, 1),
         ("closed", "get_closed", None, 0, 0, 0, 0, 1, 0, 1),
         ("frames", "get_frames", "set_frames", 0, 0, 0, 0, 1, 0, 1),
-        ("length", "get_length", "set_length", 0, 0, 0, 0, 1, 0, 1),
-        ("top", "get_top", None, 0, 0, 4, 0, 1, 0, 1),
+        ("length", "get_length", "set_length", 0, 0, 0, 0, 1, 0, 1), ("top", "get_top", None, 0, 0, 4, 0, 1, 0, 1),
         ("opener", "get_opener", "set_opener", 0, 0, 0, 0, 1, 0, 1),
         ("parent", "get_parent", "set_parent", 0, 0, 0, 0, 1, 0, 1),
         ("frameElement", "get_frameElement", None, 0, 0, 0, 0, 0, 0, 1),
@@ -83,8 +80,7 @@ class Window(WindowProperties):
         ("performance", "get_performance", "set_performance", 0, 0, 0, 0, 0, 0, 1),
         ("onappinstalled", "get_onappinstalled", "set_onappinstalled", 0, 0, 0, 0, 0, 0, 1),
         ("onbeforeinstallprompt", "get_onbeforeinstallprompt", "set_onbeforeinstallprompt", 0, 0, 0, 0, 0, 0, 1),
-        ("crypto", "get_crypto", None, 0, 0, 0, 0, 0, 0, 1),
-        ("indexedDB", "get_indexedDB", None, 0, 0, 0, 0, 0, 0, 1),
+        ("crypto", "get_crypto", None, 0, 0, 0, 0, 0, 0, 1), ("indexedDB", "get_indexedDB", None, 0, 0, 0, 0, 0, 0, 1),
         ("sessionStorage", "get_sessionStorage", None, 0, 0, 0, 0, 0, 0, 1),
         ("localStorage", "get_localStorage", None, 0, 0, 0, 0, 0, 0, 1),
         ("onbeforexrselect", "get_onbeforexrselect", "set_onbeforexrselect", 0, 0, 0, 0, 0, 0, 1),
@@ -98,8 +94,9 @@ class Window(WindowProperties):
         ("oncanplaythrough", "get_oncanplaythrough", "set_oncanplaythrough", 0, 0, 0, 0, 0, 0, 1),
         ("onchange", "get_onchange", "set_onchange", 0, 0, 0, 0, 0, 0, 1),
         ("onclick", "get_onclick", "set_onclick", 0, 0, 0, 0, 0, 0, 1),
-        ("onclose", "get_onclose", "set_onclose", 0, 0, 0, 0, 0, 0, 1),
-        ("oncontentvisibilityautostatechange", "get_oncontentvisibilityautostatechange", "set_oncontentvisibilityautostatechange", 0, 0, 0, 0, 0, 0, 1),
+        ("onclose", "get_onclose", "set_onclose", 0, 0, 0, 0, 0, 0, 1), (
+        "oncontentvisibilityautostatechange", "get_oncontentvisibilityautostatechange",
+        "set_oncontentvisibilityautostatechange", 0, 0, 0, 0, 0, 0, 1),
         ("oncontextlost", "get_oncontextlost", "set_oncontextlost", 0, 0, 0, 0, 0, 0, 1),
         ("oncontextmenu", "get_oncontextmenu", "set_oncontextmenu", 0, 0, 0, 0, 0, 0, 1),
         ("oncontextrestored", "get_oncontextrestored", "set_oncontextrestored", 0, 0, 0, 0, 0, 0, 1),
@@ -142,9 +139,9 @@ class Window(WindowProperties):
         ("onratechange", "get_onratechange", "set_onratechange", 0, 0, 0, 0, 0, 0, 1),
         ("onreset", "get_onreset", "set_onreset", 0, 0, 0, 0, 0, 0, 1),
         ("onresize", "get_onresize", "set_onresize", 0, 0, 0, 0, 0, 0, 1),
-        ("onscroll", "get_onscroll", "set_onscroll", 0, 0, 0, 0, 0, 0, 1),
-        ("onsecuritypolicyviolation", "get_onsecuritypolicyviolation", "set_onsecuritypolicyviolation", 0, 0, 0, 0, 0, 0, 1),
-        ("onseeked", "get_onseeked", "set_onseeked", 0, 0, 0, 0, 0, 0, 1),
+        ("onscroll", "get_onscroll", "set_onscroll", 0, 0, 0, 0, 0, 0, 1), (
+        "onsecuritypolicyviolation", "get_onsecuritypolicyviolation", "set_onsecuritypolicyviolation", 0, 0, 0, 0, 0, 0,
+        1), ("onseeked", "get_onseeked", "set_onseeked", 0, 0, 0, 0, 0, 0, 1),
         ("onseeking", "get_onseeking", "set_onseeking", 0, 0, 0, 0, 0, 0, 1),
         ("onselect", "get_onselect", "set_onselect", 0, 0, 0, 0, 0, 0, 1),
         ("onslotchange", "get_onslotchange", "set_onslotchange", 0, 0, 0, 0, 0, 0, 1),
@@ -155,8 +152,9 @@ class Window(WindowProperties):
         ("ontoggle", "get_ontoggle", "set_ontoggle", 0, 0, 0, 0, 0, 0, 1),
         ("onvolumechange", "get_onvolumechange", "set_onvolumechange", 0, 0, 0, 0, 0, 0, 1),
         ("onwaiting", "get_onwaiting", "set_onwaiting", 0, 0, 0, 0, 0, 0, 1),
-        ("onwebkitanimationend", "get_onwebkitanimationend", "set_onwebkitanimationend", 0, 0, 0, 0, 0, 0, 1),
-        ("onwebkitanimationiteration", "get_onwebkitanimationiteration", "set_onwebkitanimationiteration", 0, 0, 0, 0, 0, 0, 1),
+        ("onwebkitanimationend", "get_onwebkitanimationend", "set_onwebkitanimationend", 0, 0, 0, 0, 0, 0, 1), (
+        "onwebkitanimationiteration", "get_onwebkitanimationiteration", "set_onwebkitanimationiteration", 0, 0, 0, 0, 0,
+        0, 1),
         ("onwebkitanimationstart", "get_onwebkitanimationstart", "set_onwebkitanimationstart", 0, 0, 0, 0, 0, 0, 1),
         ("onwebkittransitionend", "get_onwebkittransitionend", "set_onwebkittransitionend", 0, 0, 0, 0, 0, 0, 1),
         ("onwheel", "get_onwheel", "set_onwheel", 0, 0, 0, 0, 0, 0, 1),
@@ -207,8 +205,7 @@ class Window(WindowProperties):
         ("defaultStatus", "get_defaultStatus", "set_defaultStatus", 0, 0, 0, 0, 0, 0, 1),
         ("defaultstatus", "get_defaultstatus", "set_defaultstatus", 0, 0, 0, 0, 0, 0, 1),
         ("credentialless", "get_credentialless", None, 0, 0, 0, 0, 0, 0, 1),
-        ("ai", "get_ai", "set_ai", 0, 0, 0, 0, 0, 0, 1),
-        ("model", "get_model", "set_model", 0, 0, 0, 0, 0, 0, 1),
+        ("ai", "get_ai", "set_ai", 0, 0, 0, 0, 0, 0, 1), ("model", "get_model", "set_model", 0, 0, 0, 0, 0, 0, 1),
         ("speechSynthesis", "get_speechSynthesis", None, 0, 0, 0, 0, 0, 0, 1),
         ("onfencedtreeclick", "get_onfencedtreeclick", "set_onfencedtreeclick", 0, 0, 0, 0, 0, 0, 1),
         ("onoverscroll", "get_onoverscroll", "set_onoverscroll", 0, 0, 0, 0, 0, 0, 1),
@@ -224,9 +221,9 @@ class Window(WindowProperties):
         ("caches", "get_caches", None, 0, 0, 0, 0, 0, 0, 1),
         ("cookieStore", "get_cookieStore", None, 0, 0, 0, 0, 0, 0, 1),
         ("ondevicemotion", "get_ondevicemotion", "set_ondevicemotion", 0, 0, 0, 0, 0, 0, 1),
-        ("ondeviceorientation", "get_ondeviceorientation", "set_ondeviceorientation", 0, 0, 0, 0, 0, 0, 1),
-        ("ondeviceorientationabsolute", "get_ondeviceorientationabsolute", "set_ondeviceorientationabsolute", 0, 0, 0, 0, 0, 0, 1),
-        ("launchQueue", "get_launchQueue", None, 0, 0, 0, 0, 0, 0, 1),
+        ("ondeviceorientation", "get_ondeviceorientation", "set_ondeviceorientation", 0, 0, 0, 0, 0, 0, 1), (
+        "ondeviceorientationabsolute", "get_ondeviceorientationabsolute", "set_ondeviceorientationabsolute", 0, 0, 0, 0,
+        0, 0, 1), ("launchQueue", "get_launchQueue", None, 0, 0, 0, 0, 0, 0, 1),
         ("privateAttribution", "get_privateAttribution", "set_privateAttribution", 0, 0, 0, 0, 0, 0, 1),
         ("sharedStorage", "get_sharedStorage", None, 0, 0, 0, 0, 0, 0, 1),
         ("documentPictureInPicture", "get_documentPictureInPicture", None, 0, 0, 0, 0, 0, 0, 1),
@@ -237,46 +234,32 @@ class Window(WindowProperties):
 
     )
 
-    __v8_method__ = (
-        # (name, cb, length, CallbackType, FlagLocation, V8Attribute, FlagReceiverCheck, 
+    __v8_method__ = (# (name, cb, length, CallbackType, FlagLocation, V8Attribute, FlagReceiverCheck,
         # cross_origin_check, SideEffectType)
-        ("alert", "fn_alert", 0, 0, 0, 0, 0, 0, 0),
-        ("atob", "fn_atob", 1, 0, 0, 0, 0, 0, 0),
-        ("blur", "fn_blur", 0, 0, 0, 0, 0, 1, 0),
-        ("btoa", "fn_btoa", 1, 0, 0, 0, 0, 0, 0),
+        ("alert", "fn_alert", 0, 0, 0, 0, 0, 0, 0), ("atob", "fn_atob", 1, 0, 0, 0, 0, 0, 0),
+        ("blur", "fn_blur", 0, 0, 0, 0, 0, 1, 0), ("btoa", "fn_btoa", 1, 0, 0, 0, 0, 0, 0),
         ("cancelAnimationFrame", "fn_cancelAnimationFrame", 1, 0, 0, 0, 0, 0, 0),
         ("cancelIdleCallback", "fn_cancelIdleCallback", 1, 0, 0, 0, 0, 0, 0),
         ("captureEvents", "fn_captureEvents", 0, 0, 0, 0, 0, 0, 0),
         ("clearInterval", "fn_clearInterval", 0, 0, 0, 0, 0, 0, 0),
-        ("clearTimeout", "fn_clearTimeout", 0, 0, 0, 0, 0, 0, 0),
-        ("close", "fn_close", 0, 0, 0, 0, 0, 1, 0),
+        ("clearTimeout", "fn_clearTimeout", 0, 0, 0, 0, 0, 0, 0), ("close", "fn_close", 0, 0, 0, 0, 0, 1, 0),
         ("confirm", "fn_confirm", 0, 0, 0, 0, 0, 0, 0),
-        ("createImageBitmap", "fn_createImageBitmap", 1, 0, 0, 0, 1, 0, 0),
-        ("fetch", "fn_fetch", 1, 0, 0, 0, 1, 0, 0),
-        ("find", "fn_find", 0, 0, 0, 0, 0, 0, 0),
-        ("focus", "fn_focus", 0, 0, 0, 0, 0, 1, 0),
+        ("createImageBitmap", "fn_createImageBitmap", 1, 0, 0, 0, 1, 0, 0), ("fetch", "fn_fetch", 1, 0, 0, 0, 1, 0, 0),
+        ("find", "fn_find", 0, 0, 0, 0, 0, 0, 0), ("focus", "fn_focus", 0, 0, 0, 0, 0, 1, 0),
         ("getComputedStyle", "fn_getComputedStyle", 1, 0, 0, 0, 0, 0, 1),
-        ("getSelection", "fn_getSelection", 0, 0, 0, 0, 0, 0, 1),
-        ("matchMedia", "fn_matchMedia", 1, 0, 0, 0, 0, 0, 0),
-        ("moveBy", "fn_moveBy", 2, 0, 0, 0, 0, 0, 0),
-        ("moveTo", "fn_moveTo", 2, 0, 0, 0, 0, 0, 0),
-        ("open", "fn_open", 0, 0, 0, 0, 0, 0, 0),
-        ("postMessage", "fn_postMessage", 1, 0, 0, 0, 0, 1, 0),
-        ("print", "fn_print", 0, 0, 0, 0, 0, 0, 0),
-        ("prompt", "fn_prompt", 0, 0, 0, 0, 0, 0, 0),
+        ("getSelection", "fn_getSelection", 0, 0, 0, 0, 0, 0, 1), ("matchMedia", "fn_matchMedia", 1, 0, 0, 0, 0, 0, 0),
+        ("moveBy", "fn_moveBy", 2, 0, 0, 0, 0, 0, 0), ("moveTo", "fn_moveTo", 2, 0, 0, 0, 0, 0, 0),
+        ("open", "fn_open", 0, 0, 0, 0, 0, 0, 0), ("postMessage", "fn_postMessage", 1, 0, 0, 0, 0, 1, 0),
+        ("print", "fn_print", 0, 0, 0, 0, 0, 0, 0), ("prompt", "fn_prompt", 0, 0, 0, 0, 0, 0, 0),
         ("queueMicrotask", "fn_queueMicrotask", 1, 0, 0, 0, 0, 0, 0),
         ("releaseEvents", "fn_releaseEvents", 0, 0, 0, 0, 0, 0, 0),
         ("reportError", "fn_reportError", 1, 0, 0, 0, 0, 0, 0),
         ("requestAnimationFrame", "fn_requestAnimationFrame", 1, 0, 0, 0, 0, 0, 0),
         ("requestIdleCallback", "fn_requestIdleCallback", 1, 0, 0, 0, 0, 0, 0),
-        ("resizeBy", "fn_resizeBy", 2, 0, 0, 0, 0, 0, 0),
-        ("resizeTo", "fn_resizeTo", 2, 0, 0, 0, 0, 0, 0),
-        ("scroll", "fn_scroll", 0, 0, 0, 0, 0, 0, 0),
-        ("scrollBy", "fn_scrollBy", 0, 0, 0, 0, 0, 0, 0),
-        ("scrollTo", "fn_scrollTo", 0, 0, 0, 0, 0, 0, 0),
-        ("setInterval", "fn_setInterval", 1, 0, 0, 0, 0, 0, 0),
-        ("setTimeout", "fn_setTimeout", 1, 0, 0, 0, 0, 0, 0),
-        ("stop", "fn_stop", 0, 0, 0, 0, 0, 0, 0),
+        ("resizeBy", "fn_resizeBy", 2, 0, 0, 0, 0, 0, 0), ("resizeTo", "fn_resizeTo", 2, 0, 0, 0, 0, 0, 0),
+        ("scroll", "fn_scroll", 0, 0, 0, 0, 0, 0, 0), ("scrollBy", "fn_scrollBy", 0, 0, 0, 0, 0, 0, 0),
+        ("scrollTo", "fn_scrollTo", 0, 0, 0, 0, 0, 0, 0), ("setInterval", "fn_setInterval", 1, 0, 0, 0, 0, 0, 0),
+        ("setTimeout", "fn_setTimeout", 1, 0, 0, 0, 0, 0, 0), ("stop", "fn_stop", 0, 0, 0, 0, 0, 0, 0),
         ("structuredClone", "fn_structuredClone", 1, 0, 0, 0, 0, 0, 0),
         ("webkitCancelAnimationFrame", "fn_webkitCancelAnimationFrame", 1, 0, 0, 0, 0, 0, 0),
         ("webkitRequestAnimationFrame", "fn_webkitRequestAnimationFrame", 1, 0, 0, 0, 0, 0, 0),
@@ -287,10 +270,8 @@ class Window(WindowProperties):
         ("getDigitalGoodsService", "fn_getDigitalGoodsService", 1, 0, 0, 0, 1, 0, 0),
         ("getLockScreenData", "fn_getLockScreenData", 0, 0, 0, 0, 1, 0, 0),
         ("getScreenDetails", "fn_getScreenDetails", 0, 0, 0, 0, 1, 0, 0),
-        ("maximize", "fn_maximize", 0, 0, 0, 0, 1, 0, 0),
-        ("minimize", "fn_minimize", 0, 0, 0, 0, 1, 0, 0),
-        ("restore", "fn_restore", 0, 0, 0, 0, 1, 0, 0),
-        ("setResizable", "fn_setResizable", 1, 0, 0, 0, 1, 0, 0),
+        ("maximize", "fn_maximize", 0, 0, 0, 0, 1, 0, 0), ("minimize", "fn_minimize", 0, 0, 0, 0, 1, 0, 0),
+        ("restore", "fn_restore", 0, 0, 0, 0, 1, 0, 0), ("setResizable", "fn_setResizable", 1, 0, 0, 0, 1, 0, 0),
         ("openDatabase", "fn_openDatabase", 4, 0, 0, 0, 0, 0, 0),
         ("queryLocalFonts", "fn_queryLocalFonts", 0, 0, 0, 0, 1, 0, 0),
         ("showDirectoryPicker", "fn_showDirectoryPicker", 0, 0, 0, 0, 1, 0, 0),
@@ -303,13 +284,13 @@ class Window(WindowProperties):
         val = self._attr.get('window')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.window -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.window -> get attr')
 
     def get_self(self):
         val = self._attr.get('self')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.self -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.self -> get attr')
 
     def set_self(self, val):
         self._attr['self'] = val
@@ -318,13 +299,13 @@ class Window(WindowProperties):
         val = self._attr.get('document')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.document -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.document -> get attr')
 
     def get_name(self):
         val = self._attr.get('name')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.name -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.name -> get attr')
 
     def set_name(self, val):
         self._attr['name'] = val
@@ -333,7 +314,7 @@ class Window(WindowProperties):
         val = self._attr.get('location')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.location -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.location -> get attr')
 
     def set_location(self, val):
         self._attr['location'] = val
@@ -342,19 +323,19 @@ class Window(WindowProperties):
         val = self._attr.get('customElements')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.customElements -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.customElements -> get attr')
 
     def get_history(self):
         val = self._attr.get('history')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.history -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.history -> get attr')
 
     def get_navigation(self):
         val = self._attr.get('navigation')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.navigation -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.navigation -> get attr')
 
     def set_navigation(self, val):
         self._attr['navigation'] = val
@@ -363,7 +344,7 @@ class Window(WindowProperties):
         val = self._attr.get('locationbar')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.locationbar -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.locationbar -> get attr')
 
     def set_locationbar(self, val):
         self._attr['locationbar'] = val
@@ -372,7 +353,7 @@ class Window(WindowProperties):
         val = self._attr.get('menubar')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.menubar -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.menubar -> get attr')
 
     def set_menubar(self, val):
         self._attr['menubar'] = val
@@ -381,7 +362,7 @@ class Window(WindowProperties):
         val = self._attr.get('personalbar')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.personalbar -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.personalbar -> get attr')
 
     def set_personalbar(self, val):
         self._attr['personalbar'] = val
@@ -390,7 +371,7 @@ class Window(WindowProperties):
         val = self._attr.get('scrollbars')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.scrollbars -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.scrollbars -> get attr')
 
     def set_scrollbars(self, val):
         self._attr['scrollbars'] = val
@@ -399,7 +380,7 @@ class Window(WindowProperties):
         val = self._attr.get('statusbar')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.statusbar -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.statusbar -> get attr')
 
     def set_statusbar(self, val):
         self._attr['statusbar'] = val
@@ -408,7 +389,7 @@ class Window(WindowProperties):
         val = self._attr.get('toolbar')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.toolbar -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.toolbar -> get attr')
 
     def set_toolbar(self, val):
         self._attr['toolbar'] = val
@@ -417,7 +398,7 @@ class Window(WindowProperties):
         val = self._attr.get('status')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.status -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.status -> get attr')
 
     def set_status(self, val):
         self._attr['status'] = val
@@ -426,13 +407,13 @@ class Window(WindowProperties):
         val = self._attr.get('closed')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.closed -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.closed -> get attr')
 
     def get_frames(self):
         val = self._attr.get('frames')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.frames -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.frames -> get attr')
 
     def set_frames(self, val):
         self._attr['frames'] = val
@@ -441,7 +422,7 @@ class Window(WindowProperties):
         val = self._attr.get('length')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.length -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.length -> get attr')
 
     def set_length(self, val):
         self._attr['length'] = val
@@ -450,13 +431,13 @@ class Window(WindowProperties):
         val = self._attr.get('top')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.top -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.top -> get attr')
 
     def get_opener(self):
         val = self._attr.get('opener')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.opener -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.opener -> get attr')
 
     def set_opener(self, val):
         self._attr['opener'] = val
@@ -465,7 +446,7 @@ class Window(WindowProperties):
         val = self._attr.get('parent')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.parent -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.parent -> get attr')
 
     def set_parent(self, val):
         self._attr['parent'] = val
@@ -474,19 +455,19 @@ class Window(WindowProperties):
         val = self._attr.get('frameElement')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.frameElement -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.frameElement -> get attr')
 
     def get_navigator(self):
         val = self._attr.get('navigator')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.navigator -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.navigator -> get attr')
 
     def get_origin(self):
         val = self._attr.get('origin')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.origin -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.origin -> get attr')
 
     def set_origin(self, val):
         self._attr['origin'] = val
@@ -495,7 +476,7 @@ class Window(WindowProperties):
         val = self._attr.get('external')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.external -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.external -> get attr')
 
     def set_external(self, val):
         self._attr['external'] = val
@@ -504,7 +485,7 @@ class Window(WindowProperties):
         val = self._attr.get('screen')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.screen -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.screen -> get attr')
 
     def set_screen(self, val):
         self._attr['screen'] = val
@@ -513,7 +494,7 @@ class Window(WindowProperties):
         val = self._attr.get('innerWidth')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.innerWidth -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.innerWidth -> get attr')
 
     def set_innerWidth(self, val):
         self._attr['innerWidth'] = val
@@ -522,7 +503,7 @@ class Window(WindowProperties):
         val = self._attr.get('innerHeight')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.innerHeight -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.innerHeight -> get attr')
 
     def set_innerHeight(self, val):
         self._attr['innerHeight'] = val
@@ -531,7 +512,7 @@ class Window(WindowProperties):
         val = self._attr.get('scrollX')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.scrollX -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.scrollX -> get attr')
 
     def set_scrollX(self, val):
         self._attr['scrollX'] = val
@@ -540,7 +521,7 @@ class Window(WindowProperties):
         val = self._attr.get('pageXOffset')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.pageXOffset -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.pageXOffset -> get attr')
 
     def set_pageXOffset(self, val):
         self._attr['pageXOffset'] = val
@@ -549,7 +530,7 @@ class Window(WindowProperties):
         val = self._attr.get('scrollY')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.scrollY -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.scrollY -> get attr')
 
     def set_scrollY(self, val):
         self._attr['scrollY'] = val
@@ -558,7 +539,7 @@ class Window(WindowProperties):
         val = self._attr.get('pageYOffset')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.pageYOffset -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.pageYOffset -> get attr')
 
     def set_pageYOffset(self, val):
         self._attr['pageYOffset'] = val
@@ -567,7 +548,7 @@ class Window(WindowProperties):
         val = self._attr.get('visualViewport')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.visualViewport -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.visualViewport -> get attr')
 
     def set_visualViewport(self, val):
         self._attr['visualViewport'] = val
@@ -576,7 +557,7 @@ class Window(WindowProperties):
         val = self._attr.get('screenX')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.screenX -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.screenX -> get attr')
 
     def set_screenX(self, val):
         self._attr['screenX'] = val
@@ -585,7 +566,7 @@ class Window(WindowProperties):
         val = self._attr.get('screenY')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.screenY -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.screenY -> get attr')
 
     def set_screenY(self, val):
         self._attr['screenY'] = val
@@ -594,7 +575,7 @@ class Window(WindowProperties):
         val = self._attr.get('outerWidth')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.outerWidth -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.outerWidth -> get attr')
 
     def set_outerWidth(self, val):
         self._attr['outerWidth'] = val
@@ -603,7 +584,7 @@ class Window(WindowProperties):
         val = self._attr.get('outerHeight')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.outerHeight -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.outerHeight -> get attr')
 
     def set_outerHeight(self, val):
         self._attr['outerHeight'] = val
@@ -612,7 +593,7 @@ class Window(WindowProperties):
         val = self._attr.get('devicePixelRatio')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.devicePixelRatio -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.devicePixelRatio -> get attr')
 
     def set_devicePixelRatio(self, val):
         self._attr['devicePixelRatio'] = val
@@ -621,7 +602,7 @@ class Window(WindowProperties):
         val = self._attr.get('event')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.event -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.event -> get attr')
 
     def set_event(self, val):
         self._attr['event'] = val
@@ -630,7 +611,7 @@ class Window(WindowProperties):
         val = self._attr.get('clientInformation')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.clientInformation -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.clientInformation -> get attr')
 
     def set_clientInformation(self, val):
         self._attr['clientInformation'] = val
@@ -639,7 +620,7 @@ class Window(WindowProperties):
         val = self._attr.get('offscreenBuffering')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.offscreenBuffering -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.offscreenBuffering -> get attr')
 
     def set_offscreenBuffering(self, val):
         self._attr['offscreenBuffering'] = val
@@ -648,7 +629,7 @@ class Window(WindowProperties):
         val = self._attr.get('screenLeft')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.screenLeft -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.screenLeft -> get attr')
 
     def set_screenLeft(self, val):
         self._attr['screenLeft'] = val
@@ -657,7 +638,7 @@ class Window(WindowProperties):
         val = self._attr.get('screenTop')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.screenTop -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.screenTop -> get attr')
 
     def set_screenTop(self, val):
         self._attr['screenTop'] = val
@@ -666,13 +647,13 @@ class Window(WindowProperties):
         val = self._attr.get('styleMedia')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.styleMedia -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.styleMedia -> get attr')
 
     def get_onsearch(self):
         val = self._attr.get('onsearch')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onsearch -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onsearch -> get attr')
 
     def set_onsearch(self, val):
         self._attr['onsearch'] = val
@@ -681,19 +662,19 @@ class Window(WindowProperties):
         val = self._attr.get('isSecureContext')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.isSecureContext -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.isSecureContext -> get attr')
 
     def get_trustedTypes(self):
         val = self._attr.get('trustedTypes')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.trustedTypes -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.trustedTypes -> get attr')
 
     def get_performance(self):
         val = self._attr.get('performance')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.performance -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.performance -> get attr')
 
     def set_performance(self, val):
         self._attr['performance'] = val
@@ -702,7 +683,7 @@ class Window(WindowProperties):
         val = self._attr.get('onappinstalled')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onappinstalled -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onappinstalled -> get attr')
 
     def set_onappinstalled(self, val):
         self._attr['onappinstalled'] = val
@@ -711,7 +692,7 @@ class Window(WindowProperties):
         val = self._attr.get('onbeforeinstallprompt')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onbeforeinstallprompt -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onbeforeinstallprompt -> get attr')
 
     def set_onbeforeinstallprompt(self, val):
         self._attr['onbeforeinstallprompt'] = val
@@ -720,31 +701,31 @@ class Window(WindowProperties):
         val = self._attr.get('crypto')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.crypto -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.crypto -> get attr')
 
     def get_indexedDB(self):
         val = self._attr.get('indexedDB')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.indexedDB -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.indexedDB -> get attr')
 
     def get_sessionStorage(self):
         val = self._attr.get('sessionStorage')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.sessionStorage -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.sessionStorage -> get attr')
 
     def get_localStorage(self):
         val = self._attr.get('localStorage')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.localStorage -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.localStorage -> get attr')
 
     def get_onbeforexrselect(self):
         val = self._attr.get('onbeforexrselect')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onbeforexrselect -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onbeforexrselect -> get attr')
 
     def set_onbeforexrselect(self, val):
         self._attr['onbeforexrselect'] = val
@@ -753,7 +734,7 @@ class Window(WindowProperties):
         val = self._attr.get('onabort')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onabort -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onabort -> get attr')
 
     def set_onabort(self, val):
         self._attr['onabort'] = val
@@ -762,7 +743,7 @@ class Window(WindowProperties):
         val = self._attr.get('onbeforeinput')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onbeforeinput -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onbeforeinput -> get attr')
 
     def set_onbeforeinput(self, val):
         self._attr['onbeforeinput'] = val
@@ -771,7 +752,7 @@ class Window(WindowProperties):
         val = self._attr.get('onbeforematch')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onbeforematch -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onbeforematch -> get attr')
 
     def set_onbeforematch(self, val):
         self._attr['onbeforematch'] = val
@@ -780,7 +761,7 @@ class Window(WindowProperties):
         val = self._attr.get('onbeforetoggle')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onbeforetoggle -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onbeforetoggle -> get attr')
 
     def set_onbeforetoggle(self, val):
         self._attr['onbeforetoggle'] = val
@@ -789,7 +770,7 @@ class Window(WindowProperties):
         val = self._attr.get('onblur')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onblur -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onblur -> get attr')
 
     def set_onblur(self, val):
         self._attr['onblur'] = val
@@ -798,7 +779,7 @@ class Window(WindowProperties):
         val = self._attr.get('oncancel')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.oncancel -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.oncancel -> get attr')
 
     def set_oncancel(self, val):
         self._attr['oncancel'] = val
@@ -807,7 +788,7 @@ class Window(WindowProperties):
         val = self._attr.get('oncanplay')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.oncanplay -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.oncanplay -> get attr')
 
     def set_oncanplay(self, val):
         self._attr['oncanplay'] = val
@@ -816,7 +797,7 @@ class Window(WindowProperties):
         val = self._attr.get('oncanplaythrough')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.oncanplaythrough -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.oncanplaythrough -> get attr')
 
     def set_oncanplaythrough(self, val):
         self._attr['oncanplaythrough'] = val
@@ -825,7 +806,7 @@ class Window(WindowProperties):
         val = self._attr.get('onchange')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onchange -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onchange -> get attr')
 
     def set_onchange(self, val):
         self._attr['onchange'] = val
@@ -834,7 +815,7 @@ class Window(WindowProperties):
         val = self._attr.get('onclick')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onclick -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onclick -> get attr')
 
     def set_onclick(self, val):
         self._attr['onclick'] = val
@@ -843,7 +824,7 @@ class Window(WindowProperties):
         val = self._attr.get('onclose')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onclose -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onclose -> get attr')
 
     def set_onclose(self, val):
         self._attr['onclose'] = val
@@ -852,7 +833,7 @@ class Window(WindowProperties):
         val = self._attr.get('oncontentvisibilityautostatechange')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.oncontentvisibilityautostatechange -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.oncontentvisibilityautostatechange -> get attr')
 
     def set_oncontentvisibilityautostatechange(self, val):
         self._attr['oncontentvisibilityautostatechange'] = val
@@ -861,7 +842,7 @@ class Window(WindowProperties):
         val = self._attr.get('oncontextlost')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.oncontextlost -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.oncontextlost -> get attr')
 
     def set_oncontextlost(self, val):
         self._attr['oncontextlost'] = val
@@ -870,7 +851,7 @@ class Window(WindowProperties):
         val = self._attr.get('oncontextmenu')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.oncontextmenu -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.oncontextmenu -> get attr')
 
     def set_oncontextmenu(self, val):
         self._attr['oncontextmenu'] = val
@@ -879,7 +860,7 @@ class Window(WindowProperties):
         val = self._attr.get('oncontextrestored')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.oncontextrestored -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.oncontextrestored -> get attr')
 
     def set_oncontextrestored(self, val):
         self._attr['oncontextrestored'] = val
@@ -888,7 +869,7 @@ class Window(WindowProperties):
         val = self._attr.get('oncuechange')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.oncuechange -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.oncuechange -> get attr')
 
     def set_oncuechange(self, val):
         self._attr['oncuechange'] = val
@@ -897,7 +878,7 @@ class Window(WindowProperties):
         val = self._attr.get('ondblclick')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.ondblclick -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.ondblclick -> get attr')
 
     def set_ondblclick(self, val):
         self._attr['ondblclick'] = val
@@ -906,7 +887,7 @@ class Window(WindowProperties):
         val = self._attr.get('ondrag')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.ondrag -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.ondrag -> get attr')
 
     def set_ondrag(self, val):
         self._attr['ondrag'] = val
@@ -915,7 +896,7 @@ class Window(WindowProperties):
         val = self._attr.get('ondragend')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.ondragend -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.ondragend -> get attr')
 
     def set_ondragend(self, val):
         self._attr['ondragend'] = val
@@ -924,7 +905,7 @@ class Window(WindowProperties):
         val = self._attr.get('ondragenter')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.ondragenter -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.ondragenter -> get attr')
 
     def set_ondragenter(self, val):
         self._attr['ondragenter'] = val
@@ -933,7 +914,7 @@ class Window(WindowProperties):
         val = self._attr.get('ondragleave')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.ondragleave -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.ondragleave -> get attr')
 
     def set_ondragleave(self, val):
         self._attr['ondragleave'] = val
@@ -942,7 +923,7 @@ class Window(WindowProperties):
         val = self._attr.get('ondragover')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.ondragover -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.ondragover -> get attr')
 
     def set_ondragover(self, val):
         self._attr['ondragover'] = val
@@ -951,7 +932,7 @@ class Window(WindowProperties):
         val = self._attr.get('ondragstart')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.ondragstart -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.ondragstart -> get attr')
 
     def set_ondragstart(self, val):
         self._attr['ondragstart'] = val
@@ -960,7 +941,7 @@ class Window(WindowProperties):
         val = self._attr.get('ondrop')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.ondrop -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.ondrop -> get attr')
 
     def set_ondrop(self, val):
         self._attr['ondrop'] = val
@@ -969,7 +950,7 @@ class Window(WindowProperties):
         val = self._attr.get('ondurationchange')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.ondurationchange -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.ondurationchange -> get attr')
 
     def set_ondurationchange(self, val):
         self._attr['ondurationchange'] = val
@@ -978,7 +959,7 @@ class Window(WindowProperties):
         val = self._attr.get('onemptied')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onemptied -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onemptied -> get attr')
 
     def set_onemptied(self, val):
         self._attr['onemptied'] = val
@@ -987,7 +968,7 @@ class Window(WindowProperties):
         val = self._attr.get('onended')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onended -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onended -> get attr')
 
     def set_onended(self, val):
         self._attr['onended'] = val
@@ -996,7 +977,7 @@ class Window(WindowProperties):
         val = self._attr.get('onerror')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onerror -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onerror -> get attr')
 
     def set_onerror(self, val):
         self._attr['onerror'] = val
@@ -1005,7 +986,7 @@ class Window(WindowProperties):
         val = self._attr.get('onfocus')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onfocus -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onfocus -> get attr')
 
     def set_onfocus(self, val):
         self._attr['onfocus'] = val
@@ -1014,7 +995,7 @@ class Window(WindowProperties):
         val = self._attr.get('onformdata')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onformdata -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onformdata -> get attr')
 
     def set_onformdata(self, val):
         self._attr['onformdata'] = val
@@ -1023,7 +1004,7 @@ class Window(WindowProperties):
         val = self._attr.get('oninput')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.oninput -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.oninput -> get attr')
 
     def set_oninput(self, val):
         self._attr['oninput'] = val
@@ -1032,7 +1013,7 @@ class Window(WindowProperties):
         val = self._attr.get('oninvalid')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.oninvalid -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.oninvalid -> get attr')
 
     def set_oninvalid(self, val):
         self._attr['oninvalid'] = val
@@ -1041,7 +1022,7 @@ class Window(WindowProperties):
         val = self._attr.get('onkeydown')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onkeydown -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onkeydown -> get attr')
 
     def set_onkeydown(self, val):
         self._attr['onkeydown'] = val
@@ -1050,7 +1031,7 @@ class Window(WindowProperties):
         val = self._attr.get('onkeypress')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onkeypress -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onkeypress -> get attr')
 
     def set_onkeypress(self, val):
         self._attr['onkeypress'] = val
@@ -1059,7 +1040,7 @@ class Window(WindowProperties):
         val = self._attr.get('onkeyup')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onkeyup -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onkeyup -> get attr')
 
     def set_onkeyup(self, val):
         self._attr['onkeyup'] = val
@@ -1068,7 +1049,7 @@ class Window(WindowProperties):
         val = self._attr.get('onload')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onload -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onload -> get attr')
 
     def set_onload(self, val):
         self._attr['onload'] = val
@@ -1077,7 +1058,7 @@ class Window(WindowProperties):
         val = self._attr.get('onloadeddata')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onloadeddata -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onloadeddata -> get attr')
 
     def set_onloadeddata(self, val):
         self._attr['onloadeddata'] = val
@@ -1086,7 +1067,7 @@ class Window(WindowProperties):
         val = self._attr.get('onloadedmetadata')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onloadedmetadata -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onloadedmetadata -> get attr')
 
     def set_onloadedmetadata(self, val):
         self._attr['onloadedmetadata'] = val
@@ -1095,7 +1076,7 @@ class Window(WindowProperties):
         val = self._attr.get('onloadstart')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onloadstart -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onloadstart -> get attr')
 
     def set_onloadstart(self, val):
         self._attr['onloadstart'] = val
@@ -1104,7 +1085,7 @@ class Window(WindowProperties):
         val = self._attr.get('onmousedown')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onmousedown -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onmousedown -> get attr')
 
     def set_onmousedown(self, val):
         self._attr['onmousedown'] = val
@@ -1113,7 +1094,7 @@ class Window(WindowProperties):
         val = self._attr.get('onmouseenter')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onmouseenter -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onmouseenter -> get attr')
 
     def set_onmouseenter(self, val):
         self._attr['onmouseenter'] = val
@@ -1122,7 +1103,7 @@ class Window(WindowProperties):
         val = self._attr.get('onmouseleave')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onmouseleave -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onmouseleave -> get attr')
 
     def set_onmouseleave(self, val):
         self._attr['onmouseleave'] = val
@@ -1131,7 +1112,7 @@ class Window(WindowProperties):
         val = self._attr.get('onmousemove')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onmousemove -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onmousemove -> get attr')
 
     def set_onmousemove(self, val):
         self._attr['onmousemove'] = val
@@ -1140,7 +1121,7 @@ class Window(WindowProperties):
         val = self._attr.get('onmouseout')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onmouseout -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onmouseout -> get attr')
 
     def set_onmouseout(self, val):
         self._attr['onmouseout'] = val
@@ -1149,7 +1130,7 @@ class Window(WindowProperties):
         val = self._attr.get('onmouseover')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onmouseover -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onmouseover -> get attr')
 
     def set_onmouseover(self, val):
         self._attr['onmouseover'] = val
@@ -1158,7 +1139,7 @@ class Window(WindowProperties):
         val = self._attr.get('onmouseup')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onmouseup -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onmouseup -> get attr')
 
     def set_onmouseup(self, val):
         self._attr['onmouseup'] = val
@@ -1167,7 +1148,7 @@ class Window(WindowProperties):
         val = self._attr.get('onmousewheel')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onmousewheel -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onmousewheel -> get attr')
 
     def set_onmousewheel(self, val):
         self._attr['onmousewheel'] = val
@@ -1176,7 +1157,7 @@ class Window(WindowProperties):
         val = self._attr.get('onpause')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onpause -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onpause -> get attr')
 
     def set_onpause(self, val):
         self._attr['onpause'] = val
@@ -1185,7 +1166,7 @@ class Window(WindowProperties):
         val = self._attr.get('onplay')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onplay -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onplay -> get attr')
 
     def set_onplay(self, val):
         self._attr['onplay'] = val
@@ -1194,7 +1175,7 @@ class Window(WindowProperties):
         val = self._attr.get('onplaying')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onplaying -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onplaying -> get attr')
 
     def set_onplaying(self, val):
         self._attr['onplaying'] = val
@@ -1203,7 +1184,7 @@ class Window(WindowProperties):
         val = self._attr.get('onprogress')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onprogress -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onprogress -> get attr')
 
     def set_onprogress(self, val):
         self._attr['onprogress'] = val
@@ -1212,7 +1193,7 @@ class Window(WindowProperties):
         val = self._attr.get('onratechange')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onratechange -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onratechange -> get attr')
 
     def set_onratechange(self, val):
         self._attr['onratechange'] = val
@@ -1221,7 +1202,7 @@ class Window(WindowProperties):
         val = self._attr.get('onreset')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onreset -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onreset -> get attr')
 
     def set_onreset(self, val):
         self._attr['onreset'] = val
@@ -1230,7 +1211,7 @@ class Window(WindowProperties):
         val = self._attr.get('onresize')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onresize -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onresize -> get attr')
 
     def set_onresize(self, val):
         self._attr['onresize'] = val
@@ -1239,7 +1220,7 @@ class Window(WindowProperties):
         val = self._attr.get('onscroll')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onscroll -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onscroll -> get attr')
 
     def set_onscroll(self, val):
         self._attr['onscroll'] = val
@@ -1248,7 +1229,7 @@ class Window(WindowProperties):
         val = self._attr.get('onsecuritypolicyviolation')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onsecuritypolicyviolation -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onsecuritypolicyviolation -> get attr')
 
     def set_onsecuritypolicyviolation(self, val):
         self._attr['onsecuritypolicyviolation'] = val
@@ -1257,7 +1238,7 @@ class Window(WindowProperties):
         val = self._attr.get('onseeked')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onseeked -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onseeked -> get attr')
 
     def set_onseeked(self, val):
         self._attr['onseeked'] = val
@@ -1266,7 +1247,7 @@ class Window(WindowProperties):
         val = self._attr.get('onseeking')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onseeking -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onseeking -> get attr')
 
     def set_onseeking(self, val):
         self._attr['onseeking'] = val
@@ -1275,7 +1256,7 @@ class Window(WindowProperties):
         val = self._attr.get('onselect')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onselect -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onselect -> get attr')
 
     def set_onselect(self, val):
         self._attr['onselect'] = val
@@ -1284,7 +1265,7 @@ class Window(WindowProperties):
         val = self._attr.get('onslotchange')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onslotchange -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onslotchange -> get attr')
 
     def set_onslotchange(self, val):
         self._attr['onslotchange'] = val
@@ -1293,7 +1274,7 @@ class Window(WindowProperties):
         val = self._attr.get('onstalled')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onstalled -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onstalled -> get attr')
 
     def set_onstalled(self, val):
         self._attr['onstalled'] = val
@@ -1302,7 +1283,7 @@ class Window(WindowProperties):
         val = self._attr.get('onsubmit')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onsubmit -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onsubmit -> get attr')
 
     def set_onsubmit(self, val):
         self._attr['onsubmit'] = val
@@ -1311,7 +1292,7 @@ class Window(WindowProperties):
         val = self._attr.get('onsuspend')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onsuspend -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onsuspend -> get attr')
 
     def set_onsuspend(self, val):
         self._attr['onsuspend'] = val
@@ -1320,7 +1301,7 @@ class Window(WindowProperties):
         val = self._attr.get('ontimeupdate')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.ontimeupdate -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.ontimeupdate -> get attr')
 
     def set_ontimeupdate(self, val):
         self._attr['ontimeupdate'] = val
@@ -1329,7 +1310,7 @@ class Window(WindowProperties):
         val = self._attr.get('ontoggle')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.ontoggle -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.ontoggle -> get attr')
 
     def set_ontoggle(self, val):
         self._attr['ontoggle'] = val
@@ -1338,7 +1319,7 @@ class Window(WindowProperties):
         val = self._attr.get('onvolumechange')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onvolumechange -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onvolumechange -> get attr')
 
     def set_onvolumechange(self, val):
         self._attr['onvolumechange'] = val
@@ -1347,7 +1328,7 @@ class Window(WindowProperties):
         val = self._attr.get('onwaiting')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onwaiting -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onwaiting -> get attr')
 
     def set_onwaiting(self, val):
         self._attr['onwaiting'] = val
@@ -1356,7 +1337,7 @@ class Window(WindowProperties):
         val = self._attr.get('onwebkitanimationend')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onwebkitanimationend -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onwebkitanimationend -> get attr')
 
     def set_onwebkitanimationend(self, val):
         self._attr['onwebkitanimationend'] = val
@@ -1365,7 +1346,7 @@ class Window(WindowProperties):
         val = self._attr.get('onwebkitanimationiteration')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onwebkitanimationiteration -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onwebkitanimationiteration -> get attr')
 
     def set_onwebkitanimationiteration(self, val):
         self._attr['onwebkitanimationiteration'] = val
@@ -1374,7 +1355,7 @@ class Window(WindowProperties):
         val = self._attr.get('onwebkitanimationstart')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onwebkitanimationstart -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onwebkitanimationstart -> get attr')
 
     def set_onwebkitanimationstart(self, val):
         self._attr['onwebkitanimationstart'] = val
@@ -1383,7 +1364,7 @@ class Window(WindowProperties):
         val = self._attr.get('onwebkittransitionend')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onwebkittransitionend -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onwebkittransitionend -> get attr')
 
     def set_onwebkittransitionend(self, val):
         self._attr['onwebkittransitionend'] = val
@@ -1392,7 +1373,7 @@ class Window(WindowProperties):
         val = self._attr.get('onwheel')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onwheel -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onwheel -> get attr')
 
     def set_onwheel(self, val):
         self._attr['onwheel'] = val
@@ -1401,7 +1382,7 @@ class Window(WindowProperties):
         val = self._attr.get('onauxclick')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onauxclick -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onauxclick -> get attr')
 
     def set_onauxclick(self, val):
         self._attr['onauxclick'] = val
@@ -1410,7 +1391,7 @@ class Window(WindowProperties):
         val = self._attr.get('ongotpointercapture')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.ongotpointercapture -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.ongotpointercapture -> get attr')
 
     def set_ongotpointercapture(self, val):
         self._attr['ongotpointercapture'] = val
@@ -1419,7 +1400,7 @@ class Window(WindowProperties):
         val = self._attr.get('onlostpointercapture')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onlostpointercapture -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onlostpointercapture -> get attr')
 
     def set_onlostpointercapture(self, val):
         self._attr['onlostpointercapture'] = val
@@ -1428,7 +1409,7 @@ class Window(WindowProperties):
         val = self._attr.get('onpointerdown')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onpointerdown -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onpointerdown -> get attr')
 
     def set_onpointerdown(self, val):
         self._attr['onpointerdown'] = val
@@ -1437,7 +1418,7 @@ class Window(WindowProperties):
         val = self._attr.get('onpointermove')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onpointermove -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onpointermove -> get attr')
 
     def set_onpointermove(self, val):
         self._attr['onpointermove'] = val
@@ -1446,7 +1427,7 @@ class Window(WindowProperties):
         val = self._attr.get('onpointerrawupdate')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onpointerrawupdate -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onpointerrawupdate -> get attr')
 
     def set_onpointerrawupdate(self, val):
         self._attr['onpointerrawupdate'] = val
@@ -1455,7 +1436,7 @@ class Window(WindowProperties):
         val = self._attr.get('onpointerup')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onpointerup -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onpointerup -> get attr')
 
     def set_onpointerup(self, val):
         self._attr['onpointerup'] = val
@@ -1464,7 +1445,7 @@ class Window(WindowProperties):
         val = self._attr.get('onpointercancel')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onpointercancel -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onpointercancel -> get attr')
 
     def set_onpointercancel(self, val):
         self._attr['onpointercancel'] = val
@@ -1473,7 +1454,7 @@ class Window(WindowProperties):
         val = self._attr.get('onpointerover')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onpointerover -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onpointerover -> get attr')
 
     def set_onpointerover(self, val):
         self._attr['onpointerover'] = val
@@ -1482,7 +1463,7 @@ class Window(WindowProperties):
         val = self._attr.get('onpointerout')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onpointerout -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onpointerout -> get attr')
 
     def set_onpointerout(self, val):
         self._attr['onpointerout'] = val
@@ -1491,7 +1472,7 @@ class Window(WindowProperties):
         val = self._attr.get('onpointerenter')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onpointerenter -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onpointerenter -> get attr')
 
     def set_onpointerenter(self, val):
         self._attr['onpointerenter'] = val
@@ -1500,7 +1481,7 @@ class Window(WindowProperties):
         val = self._attr.get('onpointerleave')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onpointerleave -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onpointerleave -> get attr')
 
     def set_onpointerleave(self, val):
         self._attr['onpointerleave'] = val
@@ -1509,7 +1490,7 @@ class Window(WindowProperties):
         val = self._attr.get('onselectstart')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onselectstart -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onselectstart -> get attr')
 
     def set_onselectstart(self, val):
         self._attr['onselectstart'] = val
@@ -1518,7 +1499,7 @@ class Window(WindowProperties):
         val = self._attr.get('onselectionchange')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onselectionchange -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onselectionchange -> get attr')
 
     def set_onselectionchange(self, val):
         self._attr['onselectionchange'] = val
@@ -1527,7 +1508,7 @@ class Window(WindowProperties):
         val = self._attr.get('onanimationend')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onanimationend -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onanimationend -> get attr')
 
     def set_onanimationend(self, val):
         self._attr['onanimationend'] = val
@@ -1536,7 +1517,7 @@ class Window(WindowProperties):
         val = self._attr.get('onanimationiteration')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onanimationiteration -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onanimationiteration -> get attr')
 
     def set_onanimationiteration(self, val):
         self._attr['onanimationiteration'] = val
@@ -1545,7 +1526,7 @@ class Window(WindowProperties):
         val = self._attr.get('onanimationstart')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onanimationstart -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onanimationstart -> get attr')
 
     def set_onanimationstart(self, val):
         self._attr['onanimationstart'] = val
@@ -1554,7 +1535,7 @@ class Window(WindowProperties):
         val = self._attr.get('ontransitionrun')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.ontransitionrun -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.ontransitionrun -> get attr')
 
     def set_ontransitionrun(self, val):
         self._attr['ontransitionrun'] = val
@@ -1563,7 +1544,7 @@ class Window(WindowProperties):
         val = self._attr.get('ontransitionstart')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.ontransitionstart -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.ontransitionstart -> get attr')
 
     def set_ontransitionstart(self, val):
         self._attr['ontransitionstart'] = val
@@ -1572,7 +1553,7 @@ class Window(WindowProperties):
         val = self._attr.get('ontransitionend')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.ontransitionend -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.ontransitionend -> get attr')
 
     def set_ontransitionend(self, val):
         self._attr['ontransitionend'] = val
@@ -1581,7 +1562,7 @@ class Window(WindowProperties):
         val = self._attr.get('ontransitioncancel')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.ontransitioncancel -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.ontransitioncancel -> get attr')
 
     def set_ontransitioncancel(self, val):
         self._attr['ontransitioncancel'] = val
@@ -1590,7 +1571,7 @@ class Window(WindowProperties):
         val = self._attr.get('onafterprint')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onafterprint -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onafterprint -> get attr')
 
     def set_onafterprint(self, val):
         self._attr['onafterprint'] = val
@@ -1599,7 +1580,7 @@ class Window(WindowProperties):
         val = self._attr.get('onbeforeprint')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onbeforeprint -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onbeforeprint -> get attr')
 
     def set_onbeforeprint(self, val):
         self._attr['onbeforeprint'] = val
@@ -1608,7 +1589,7 @@ class Window(WindowProperties):
         val = self._attr.get('onbeforeunload')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onbeforeunload -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onbeforeunload -> get attr')
 
     def set_onbeforeunload(self, val):
         self._attr['onbeforeunload'] = val
@@ -1617,7 +1598,7 @@ class Window(WindowProperties):
         val = self._attr.get('onhashchange')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onhashchange -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onhashchange -> get attr')
 
     def set_onhashchange(self, val):
         self._attr['onhashchange'] = val
@@ -1626,7 +1607,7 @@ class Window(WindowProperties):
         val = self._attr.get('onlanguagechange')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onlanguagechange -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onlanguagechange -> get attr')
 
     def set_onlanguagechange(self, val):
         self._attr['onlanguagechange'] = val
@@ -1635,7 +1616,7 @@ class Window(WindowProperties):
         val = self._attr.get('onmessage')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onmessage -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onmessage -> get attr')
 
     def set_onmessage(self, val):
         self._attr['onmessage'] = val
@@ -1644,7 +1625,7 @@ class Window(WindowProperties):
         val = self._attr.get('onmessageerror')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onmessageerror -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onmessageerror -> get attr')
 
     def set_onmessageerror(self, val):
         self._attr['onmessageerror'] = val
@@ -1653,7 +1634,7 @@ class Window(WindowProperties):
         val = self._attr.get('onoffline')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onoffline -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onoffline -> get attr')
 
     def set_onoffline(self, val):
         self._attr['onoffline'] = val
@@ -1662,7 +1643,7 @@ class Window(WindowProperties):
         val = self._attr.get('ononline')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.ononline -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.ononline -> get attr')
 
     def set_ononline(self, val):
         self._attr['ononline'] = val
@@ -1671,7 +1652,7 @@ class Window(WindowProperties):
         val = self._attr.get('onpagehide')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onpagehide -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onpagehide -> get attr')
 
     def set_onpagehide(self, val):
         self._attr['onpagehide'] = val
@@ -1680,7 +1661,7 @@ class Window(WindowProperties):
         val = self._attr.get('onpageshow')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onpageshow -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onpageshow -> get attr')
 
     def set_onpageshow(self, val):
         self._attr['onpageshow'] = val
@@ -1689,7 +1670,7 @@ class Window(WindowProperties):
         val = self._attr.get('onpopstate')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onpopstate -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onpopstate -> get attr')
 
     def set_onpopstate(self, val):
         self._attr['onpopstate'] = val
@@ -1698,7 +1679,7 @@ class Window(WindowProperties):
         val = self._attr.get('onrejectionhandled')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onrejectionhandled -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onrejectionhandled -> get attr')
 
     def set_onrejectionhandled(self, val):
         self._attr['onrejectionhandled'] = val
@@ -1707,7 +1688,7 @@ class Window(WindowProperties):
         val = self._attr.get('onstorage')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onstorage -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onstorage -> get attr')
 
     def set_onstorage(self, val):
         self._attr['onstorage'] = val
@@ -1716,7 +1697,7 @@ class Window(WindowProperties):
         val = self._attr.get('onunhandledrejection')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onunhandledrejection -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onunhandledrejection -> get attr')
 
     def set_onunhandledrejection(self, val):
         self._attr['onunhandledrejection'] = val
@@ -1725,7 +1706,7 @@ class Window(WindowProperties):
         val = self._attr.get('onunload')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onunload -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onunload -> get attr')
 
     def set_onunload(self, val):
         self._attr['onunload'] = val
@@ -1734,13 +1715,13 @@ class Window(WindowProperties):
         val = self._attr.get('crossOriginIsolated')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.crossOriginIsolated -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.crossOriginIsolated -> get attr')
 
     def get_scheduler(self):
         val = self._attr.get('scheduler')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.scheduler -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.scheduler -> get attr')
 
     def set_scheduler(self, val):
         self._attr['scheduler'] = val
@@ -1749,13 +1730,13 @@ class Window(WindowProperties):
         val = self._attr.get('originAgentCluster')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.originAgentCluster -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.originAgentCluster -> get attr')
 
     def get_onorientationchange(self):
         val = self._attr.get('onorientationchange')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onorientationchange -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onorientationchange -> get attr')
 
     def set_onorientationchange(self, val):
         self._attr['onorientationchange'] = val
@@ -1764,13 +1745,13 @@ class Window(WindowProperties):
         val = self._attr.get('orientation')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.orientation -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.orientation -> get attr')
 
     def get_onpageswap(self):
         val = self._attr.get('onpageswap')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onpageswap -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onpageswap -> get attr')
 
     def set_onpageswap(self, val):
         self._attr['onpageswap'] = val
@@ -1779,7 +1760,7 @@ class Window(WindowProperties):
         val = self._attr.get('onpagereveal')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onpagereveal -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onpagereveal -> get attr')
 
     def set_onpagereveal(self, val):
         self._attr['onpagereveal'] = val
@@ -1788,7 +1769,7 @@ class Window(WindowProperties):
         val = self._attr.get('defaultStatus')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.defaultStatus -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.defaultStatus -> get attr')
 
     def set_defaultStatus(self, val):
         self._attr['defaultStatus'] = val
@@ -1797,7 +1778,7 @@ class Window(WindowProperties):
         val = self._attr.get('defaultstatus')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.defaultstatus -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.defaultstatus -> get attr')
 
     def set_defaultstatus(self, val):
         self._attr['defaultstatus'] = val
@@ -1806,13 +1787,13 @@ class Window(WindowProperties):
         val = self._attr.get('credentialless')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.credentialless -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.credentialless -> get attr')
 
     def get_ai(self):
         val = self._attr.get('ai')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.ai -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.ai -> get attr')
 
     def set_ai(self, val):
         self._attr['ai'] = val
@@ -1821,7 +1802,7 @@ class Window(WindowProperties):
         val = self._attr.get('model')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.model -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.model -> get attr')
 
     def set_model(self, val):
         self._attr['model'] = val
@@ -1830,13 +1811,13 @@ class Window(WindowProperties):
         val = self._attr.get('speechSynthesis')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.speechSynthesis -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.speechSynthesis -> get attr')
 
     def get_onfencedtreeclick(self):
         val = self._attr.get('onfencedtreeclick')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onfencedtreeclick -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onfencedtreeclick -> get attr')
 
     def set_onfencedtreeclick(self, val):
         self._attr['onfencedtreeclick'] = val
@@ -1845,7 +1826,7 @@ class Window(WindowProperties):
         val = self._attr.get('onoverscroll')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onoverscroll -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onoverscroll -> get attr')
 
     def set_onoverscroll(self, val):
         self._attr['onoverscroll'] = val
@@ -1854,7 +1835,7 @@ class Window(WindowProperties):
         val = self._attr.get('onscrollend')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onscrollend -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onscrollend -> get attr')
 
     def set_onscrollend(self, val):
         self._attr['onscrollend'] = val
@@ -1863,7 +1844,7 @@ class Window(WindowProperties):
         val = self._attr.get('onscrollsnapchange')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onscrollsnapchange -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onscrollsnapchange -> get attr')
 
     def set_onscrollsnapchange(self, val):
         self._attr['onscrollsnapchange'] = val
@@ -1872,7 +1853,7 @@ class Window(WindowProperties):
         val = self._attr.get('onscrollsnapchanging')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onscrollsnapchanging -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onscrollsnapchanging -> get attr')
 
     def set_onscrollsnapchanging(self, val):
         self._attr['onscrollsnapchanging'] = val
@@ -1881,7 +1862,7 @@ class Window(WindowProperties):
         val = self._attr.get('onmove')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.onmove -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.onmove -> get attr')
 
     def set_onmove(self, val):
         self._attr['onmove'] = val
@@ -1890,7 +1871,7 @@ class Window(WindowProperties):
         val = self._attr.get('ontimezonechange')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.ontimezonechange -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.ontimezonechange -> get attr')
 
     def set_ontimezonechange(self, val):
         self._attr['ontimezonechange'] = val
@@ -1899,13 +1880,13 @@ class Window(WindowProperties):
         val = self._attr.get('crossOriginEmbedderPolicy')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.crossOriginEmbedderPolicy -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.crossOriginEmbedderPolicy -> get attr')
 
     def get_translation(self):
         val = self._attr.get('translation')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.translation -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.translation -> get attr')
 
     def set_translation(self, val):
         self._attr['translation'] = val
@@ -1914,31 +1895,31 @@ class Window(WindowProperties):
         val = self._attr.get('fence')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.fence -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.fence -> get attr')
 
     def get_testOriginTrialGlobalAttribute(self):
         val = self._attr.get('testOriginTrialGlobalAttribute')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.testOriginTrialGlobalAttribute -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.testOriginTrialGlobalAttribute -> get attr')
 
     def get_caches(self):
         val = self._attr.get('caches')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.caches -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.caches -> get attr')
 
     def get_cookieStore(self):
         val = self._attr.get('cookieStore')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.cookieStore -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.cookieStore -> get attr')
 
     def get_ondevicemotion(self):
         val = self._attr.get('ondevicemotion')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.ondevicemotion -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.ondevicemotion -> get attr')
 
     def set_ondevicemotion(self, val):
         self._attr['ondevicemotion'] = val
@@ -1947,7 +1928,7 @@ class Window(WindowProperties):
         val = self._attr.get('ondeviceorientation')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.ondeviceorientation -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.ondeviceorientation -> get attr')
 
     def set_ondeviceorientation(self, val):
         self._attr['ondeviceorientation'] = val
@@ -1956,7 +1937,7 @@ class Window(WindowProperties):
         val = self._attr.get('ondeviceorientationabsolute')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.ondeviceorientationabsolute -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.ondeviceorientationabsolute -> get attr')
 
     def set_ondeviceorientationabsolute(self, val):
         self._attr['ondeviceorientationabsolute'] = val
@@ -1965,13 +1946,13 @@ class Window(WindowProperties):
         val = self._attr.get('launchQueue')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.launchQueue -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.launchQueue -> get attr')
 
     def get_privateAttribution(self):
         val = self._attr.get('privateAttribution')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.privateAttribution -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.privateAttribution -> get attr')
 
     def set_privateAttribution(self, val):
         self._attr['privateAttribution'] = val
@@ -1980,19 +1961,19 @@ class Window(WindowProperties):
         val = self._attr.get('sharedStorage')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.sharedStorage -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.sharedStorage -> get attr')
 
     def get_documentPictureInPicture(self):
         val = self._attr.get('documentPictureInPicture')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.documentPictureInPicture -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.documentPictureInPicture -> get attr')
 
     def get_ontouchcancel(self):
         val = self._attr.get('ontouchcancel')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.ontouchcancel -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.ontouchcancel -> get attr')
 
     def set_ontouchcancel(self, val):
         self._attr['ontouchcancel'] = val
@@ -2001,7 +1982,7 @@ class Window(WindowProperties):
         val = self._attr.get('ontouchend')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.ontouchend -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.ontouchend -> get attr')
 
     def set_ontouchend(self, val):
         self._attr['ontouchend'] = val
@@ -2010,7 +1991,7 @@ class Window(WindowProperties):
         val = self._attr.get('ontouchmove')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.ontouchmove -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.ontouchmove -> get attr')
 
     def set_ontouchmove(self, val):
         self._attr['ontouchmove'] = val
@@ -2019,175 +2000,175 @@ class Window(WindowProperties):
         val = self._attr.get('ontouchstart')
         if val is not None:
             return val
-        logger.info(f'patch -> v8_window.py -> Window.ontouchstart -> get attr')
+        logger.debug(f'patch -> v8_window.py -> Window.ontouchstart -> get attr')
 
     def set_ontouchstart(self, val):
         self._attr['ontouchstart'] = val
 
     def fn_alert(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.alert{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.alert{tuple(args)} -> method')
 
     def fn_atob(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.atob{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.atob{tuple(args)} -> method')
 
     def fn_blur(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.blur{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.blur{tuple(args)} -> method')
 
     def fn_btoa(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.btoa{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.btoa{tuple(args)} -> method')
 
     def fn_cancelAnimationFrame(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.cancelAnimationFrame{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.cancelAnimationFrame{tuple(args)} -> method')
 
     def fn_cancelIdleCallback(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.cancelIdleCallback{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.cancelIdleCallback{tuple(args)} -> method')
 
     def fn_captureEvents(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.captureEvents{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.captureEvents{tuple(args)} -> method')
 
     def fn_clearInterval(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.clearInterval{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.clearInterval{tuple(args)} -> method')
 
     def fn_clearTimeout(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.clearTimeout{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.clearTimeout{tuple(args)} -> method')
 
     def fn_close(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.close{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.close{tuple(args)} -> method')
 
     def fn_confirm(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.confirm{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.confirm{tuple(args)} -> method')
 
     def fn_createImageBitmap(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.createImageBitmap{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.createImageBitmap{tuple(args)} -> method')
 
     def fn_fetch(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.fetch{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.fetch{tuple(args)} -> method')
 
     def fn_find(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.find{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.find{tuple(args)} -> method')
 
     def fn_focus(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.focus{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.focus{tuple(args)} -> method')
 
     def fn_getComputedStyle(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.getComputedStyle{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.getComputedStyle{tuple(args)} -> method')
 
     def fn_getSelection(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.getSelection{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.getSelection{tuple(args)} -> method')
 
     def fn_matchMedia(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.matchMedia{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.matchMedia{tuple(args)} -> method')
 
     def fn_moveBy(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.moveBy{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.moveBy{tuple(args)} -> method')
 
     def fn_moveTo(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.moveTo{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.moveTo{tuple(args)} -> method')
 
     def fn_open(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.open{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.open{tuple(args)} -> method')
 
     def fn_postMessage(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.postMessage{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.postMessage{tuple(args)} -> method')
 
     def fn_print(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.print{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.print{tuple(args)} -> method')
 
     def fn_prompt(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.prompt{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.prompt{tuple(args)} -> method')
 
     def fn_queueMicrotask(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.queueMicrotask{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.queueMicrotask{tuple(args)} -> method')
 
     def fn_releaseEvents(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.releaseEvents{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.releaseEvents{tuple(args)} -> method')
 
     def fn_reportError(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.reportError{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.reportError{tuple(args)} -> method')
 
     def fn_requestAnimationFrame(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.requestAnimationFrame{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.requestAnimationFrame{tuple(args)} -> method')
 
     def fn_requestIdleCallback(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.requestIdleCallback{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.requestIdleCallback{tuple(args)} -> method')
 
     def fn_resizeBy(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.resizeBy{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.resizeBy{tuple(args)} -> method')
 
     def fn_resizeTo(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.resizeTo{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.resizeTo{tuple(args)} -> method')
 
     def fn_scroll(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.scroll{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.scroll{tuple(args)} -> method')
 
     def fn_scrollBy(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.scrollBy{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.scrollBy{tuple(args)} -> method')
 
     def fn_scrollTo(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.scrollTo{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.scrollTo{tuple(args)} -> method')
 
     def fn_setInterval(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.setInterval{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.setInterval{tuple(args)} -> method')
 
     def fn_setTimeout(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.setTimeout{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.setTimeout{tuple(args)} -> method')
 
     def fn_stop(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.stop{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.stop{tuple(args)} -> method')
 
     def fn_structuredClone(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.structuredClone{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.structuredClone{tuple(args)} -> method')
 
     def fn_webkitCancelAnimationFrame(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.webkitCancelAnimationFrame{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.webkitCancelAnimationFrame{tuple(args)} -> method')
 
     def fn_webkitRequestAnimationFrame(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.webkitRequestAnimationFrame{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.webkitRequestAnimationFrame{tuple(args)} -> method')
 
     def fn_getComputedAccessibleNode(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.getComputedAccessibleNode{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.getComputedAccessibleNode{tuple(args)} -> method')
 
     def fn_webkitRequestFileSystem(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.webkitRequestFileSystem{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.webkitRequestFileSystem{tuple(args)} -> method')
 
     def fn_webkitResolveLocalFileSystemURL(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.webkitResolveLocalFileSystemURL{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.webkitResolveLocalFileSystemURL{tuple(args)} -> method')
 
     def fn_fetchLater(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.fetchLater{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.fetchLater{tuple(args)} -> method')
 
     def fn_getDigitalGoodsService(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.getDigitalGoodsService{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.getDigitalGoodsService{tuple(args)} -> method')
 
     def fn_getLockScreenData(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.getLockScreenData{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.getLockScreenData{tuple(args)} -> method')
 
     def fn_getScreenDetails(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.getScreenDetails{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.getScreenDetails{tuple(args)} -> method')
 
     def fn_maximize(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.maximize{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.maximize{tuple(args)} -> method')
 
     def fn_minimize(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.minimize{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.minimize{tuple(args)} -> method')
 
     def fn_restore(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.restore{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.restore{tuple(args)} -> method')
 
     def fn_setResizable(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.setResizable{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.setResizable{tuple(args)} -> method')
 
     def fn_openDatabase(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.openDatabase{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.openDatabase{tuple(args)} -> method')
 
     def fn_queryLocalFonts(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.queryLocalFonts{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.queryLocalFonts{tuple(args)} -> method')
 
     def fn_showDirectoryPicker(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.showDirectoryPicker{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.showDirectoryPicker{tuple(args)} -> method')
 
     def fn_showOpenFilePicker(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.showOpenFilePicker{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.showOpenFilePicker{tuple(args)} -> method')
 
     def fn_showSaveFilePicker(self, *args):
-        logger.info(f'patch -> v8_window.py -> Window.showSaveFilePicker{tuple(args)} -> method')
+        logger.debug(f'patch -> v8_window.py -> Window.showSaveFilePicker{tuple(args)} -> method')
