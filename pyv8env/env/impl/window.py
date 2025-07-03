@@ -2,19 +2,17 @@ import base64
 import binascii
 import time
 from copy import deepcopy
-from inspect import isclass
 
-import pyv8env
+from pyv8env import Null, Undefined, Context
 from pyv8env import Null, Undefined
 from pyv8env.env.impl import *
 from pyv8env.env.impl.error import V8TypeError
 from pyv8env.env.impl.error import DOMException
 # from .window_depen.dom_file_system import DOMFileSystem
 from ..chrome.flags import *
-# from ..chrome.v8_message_event import MessageEvent
+from .event.message_event import MessageEvent
 from ..chrome.v8_window import Window as V8Window
 from ..handler import Handler
-from ..priority_queue import MemoryPriorityQueue
 
 
 @impl_warp
@@ -44,6 +42,13 @@ class Window(V8Window):
         return exposed_names
 
     def __v8_name_query__(self, name):
+        # 0： 'writable': True, 'enumerable': True, 'configurable': True
+        # 1： 'writable': False, 'enumerable': True, 'configurable': True
+        # 2： 'writable': True, 'enumerable': False, 'configurable': True
+        # 3： 'writable': False, 'enumerable': False, 'configurable': True
+        # 4： 'writable': True, 'enumerable': True, 'configurable': False
+        if name == "chrome":
+            return 4
         if name in exposed_names:
             return 2
 
@@ -51,7 +56,7 @@ class Window(V8Window):
         pass
 
     def __v8_index_set__(self, *args):
-        return pyv8env.Undefined
+        return Undefined
 
     def __v8_index_del__(self, *args):
         pass
@@ -61,47 +66,38 @@ class Window(V8Window):
 
     def fn_structuredClone(self, *args):
         if len(args) == 0:
-            raise V8TypeError(
-                "Failed to execute 'structuredClone' on 'Window': 1 arguments required, but only 0 present.")
-        raw = args[0]
-        logger.warning("patch window.structuredClone")
-        return raw
+            raise V8TypeError("Failed to execute 'structuredClone' on 'Window': 1 arguments required, but only 0 present.")
+        return self.ctx.faker.structuredClone(args[0])
 
-    def fn_postMessage(self, *args, win=None, delay=True):
+    def postMessage_impl(self, e):
+        if on_message := self.get_onmessage():
+            on_message(e)
+        self.fn_dispatchEvent(e)
+
+    def fn_postMessage(self, *args, win=None):
         if len(args) == 0:
             raise V8TypeError("Failed to execute 'postMessage' on 'Window': 1 arguments required, but only 0 present.")
 
-        logger.debug(f'v8_window.py -> Window.postMessage{tuple(args)} -> method')
-
-        # if delay:
-        #     priority = getattr(self, "_message_priority", 0)
-        #     setattr(self, '_message_priority', priority + 1)
-        #
-        #     self._on_finish_tasks.push(self.fn_postMessage, *args, priority=priority, win=win)
-        #     return
-        # else:
-        #     logger.debug(f"target: {self.get_origin()}")
-        #     logger.debug(f"source: {win.get_origin()}")
-        #     data = args[0]
-        #     # if data.get('event') != 'extraParams':
-        #     e = MessageEvent("message", isTrusted=True, data=data, source=win, target=self, origin=win.get_origin())
-        #     if on_message := self.get_onmessage():
-        #         on_message(e)
-        #
-        #     self.fn_dispatchEvent(e)
-        #     win._on_finish_tasks.exec()
+        data = args[0]
+        logger.debug(f"fn_postMessage target: {self.get_origin()}")
+        logger.debug(f"fn_postMessage source: {win.get_origin()}")
+        # val = {k: data[k] for k in dir(data)}
+        # logger.debug(f"fn_postMessage data: {val}")
+        e = MessageEvent("message", isTrusted=True, data=data, source=win, target=self, origin=win.get_origin(), eventPhase=2)
+        # 使用v8的Promise 使得postMessage稍后执行
+        self.ctx.Promise.resolve(e).then(self.postMessage_impl)
 
     def fn_requestAnimationFrame(self, *args, delay=False):
         if len(args) == 0:
             raise V8TypeError(
                 "Failed to execute 'requestAnimationFrame' on 'Window': 1 arguments required, but only 0 present.")
-        i = getattr(self, '_requestAnimationFrame', 1)
-        setattr(self, '_requestAnimationFrame', i + 1)
-        if delay:
-            self._on_finish_tasks.push(self.fn_requestAnimationFrame, args)
-        else:
-            args[0]()
-        return i
+        # i = getattr(self, '_requestAnimationFrame', 1)
+        # setattr(self, '_requestAnimationFrame', i + 1)
+        # if delay:
+        #     self._on_finish_tasks.push(self.fn_requestAnimationFrame, args)
+        # else:
+        #     args[0]()
+        # return i
 
     def fn_matchMedia(self, *args):
         if len(args) == 0:
@@ -218,63 +214,6 @@ class Window(V8Window):
         }
         logger.debug(f"setInterval: {self._timer_index} {self._timers[self._timer_index]}")
         return self._timer_index
-
-    def debugger(self):
-        self._ctx.exec_js('debugger;')
-
-    @property
-    def ctx(self):
-        return self._ctx
-
-    def start(self, devtool=False, callback=None):
-        code = """
-            faker.log = console.log;
-            delete SharedArrayBuffer;
-        """
-        if self._wasm:
-            code += """
-            WebAssembly.compile = function compile(bufferSource) {
-                try {
-                  let module = new WebAssembly.Module(bufferSource);
-                  return Promise.resolve(module);
-                } catch (err) {
-                  return Promise.reject(err);
-                }
-            }
-
-            WebAssembly.instantiate= function instantiate(buffer_or_module, importObject){
-                try {
-                    if (ArrayBuffer.isView(buffer_or_module) || buffer_or_module instanceof ArrayBuffer ) {
-                        let module = new WebAssembly.Module(buffer_or_module);
-                        let instance = new WebAssembly.Instance(module, importObject);
-                        return Promise.resolve({module:module, instance:instance});
-                    }else if (buffer_or_module instanceof WebAssembly.Module) {
-                        let instance = new WebAssembly.Instance(buffer_or_module, importObject);
-                        return Promise.resolve(instance);
-                    } else {
-                        throw TypeError("WebAssembly.instantiate(): Argument 0 must be a buffer source");
-                    }
-                } catch (err) {
-                  return Promise.reject(err);
-                }
-            };
-            """
-        if self._hook:
-            code += "faker.hook=true;"
-        self._ctx.exec_js(code)
-
-        if devtool:
-            from pyv8env import start_devtools
-            # start_devtools(self._ctx, self, callback=callback if callback else self.get_document().parse_html)
-            start_devtools(self._ctx, self, callback=callback)
-        else:
-            if callback:
-                # for _ in self.get_document()._bs_tag.iter_tags():
-                #     pass
-                callback(self._ctx, self)
-            else:
-                # self.get_document().parse_html(self._ctx)
-                pass
 
     def exec_timeout(self, timeout=True, interval=True, worker=False, skip_time=0, delay=float('inf')):
         flag = True
@@ -398,12 +337,91 @@ class Window(V8Window):
         if self.handler:
             self.handler.on_done(self)
 
+    def debugger(self):
+        self._ctx.exec_js('debugger;')
+
+    def exec_js(self, *args, **kwargs):
+        return self._ctx.exec_js(*args, **kwargs)
+    
+    @property
+    def ctx(self):
+        return self._ctx
+
     def release(self):
         self._ctx = None
 
-    def __init__(self, hook: bool = False, url: str = None, cookies: dict = None, headers: dict = None,
-            handler: Handler = None, wasm: bool = False, proxies=None, top=None, parent=None, origin=None,
-            run_worker_now=True, ctx_type="[Top]", **kw):
+    def start(self, devtool=False, callback=None):
+        code = """
+            Object.defineProperty(globalThis, "chrome", {
+                value: globalThis.chrome, writable: true, enumerable: true, configurable: false
+            });
+            Object.setPrototypeOf(Image.prototype, HTMLImageElement.prototype);
+            Object.setPrototypeOf(Audio.prototype, HTMLAudioElement.prototype);
+            
+            webkitRTCPeerConnection = RTCPeerConnection;
+            window.gc = undefined;
+            delete SharedArrayBuffer;
+        """
+        if self._wasm:
+            code += """
+            WebAssembly.compile = function compile(bufferSource) {
+                try {
+                  let module = new WebAssembly.Module(bufferSource);
+                  return Promise.resolve(module);
+                } catch (err) {
+                  return Promise.reject(err);
+                }
+            }
+
+            WebAssembly.instantiate= function instantiate(buffer_or_module, importObject){
+                try {
+                    if (ArrayBuffer.isView(buffer_or_module) || buffer_or_module instanceof ArrayBuffer ) {
+                        let module = new WebAssembly.Module(buffer_or_module);
+                        let instance = new WebAssembly.Instance(module, importObject);
+                        return Promise.resolve({module:module, instance:instance});
+                    }else if (buffer_or_module instanceof WebAssembly.Module) {
+                        let instance = new WebAssembly.Instance(buffer_or_module, importObject);
+                        return Promise.resolve(instance);
+                    } else {
+                        throw TypeError("WebAssembly.instantiate(): Argument 0 must be a buffer source");
+                    }
+                } catch (err) {
+                  return Promise.reject(err);
+                }
+            };
+            """
+        if self._hook:
+            code += "faker.hook=true;"
+        self._ctx.exec_js(code)
+
+        if devtool:
+            from pyv8env import start_devtools
+            # start_devtools(self._ctx, self, callback=callback if callback else self.get_document().parse_html)
+            start_devtools(self._ctx, self, callback=callback)
+        else:
+            if callback:
+                # for _ in self.get_document()._bs_tag.iter_tags():
+                #     pass
+                callback(self._ctx, self)
+            else:
+                # self.get_document().parse_html(self._ctx)
+                pass
+
+    def __init__(
+            self,
+            hook: bool = False,
+            url: str = None,
+            cookies: dict = None,
+            headers: dict = None,
+            handler: Handler = None,
+            wasm: bool = False,
+            proxies=None,
+            top=None,
+            parent=None,
+            origin=None,
+            ctx_type="[Top]",
+            **kw
+    ):
         self._hook = hook
         self._wasm = wasm
         if not url:
@@ -473,7 +491,8 @@ class Window(V8Window):
             kw.setdefault(key, val)
         super(Window, self).__init__(**kw)
         self._attr.update({
-            "window": self, "frames": self, "self": self, "top": self if top is None else top,
+            "window": self, "frames": self, "self": self, 
+            "top": self if top is None else top,
             "parent": self if parent is None else parent
         })
 
@@ -482,8 +501,6 @@ class Window(V8Window):
         self._timer_index_worker = 0
 
         self._blob_cache = {}
-        self._run_worker_now = run_worker_now
 
-        self._on_finish_tasks = MemoryPriorityQueue()
         self._modify_exposed_constructs = set()
-        self._ctx = pyv8env.Context(global_this=self, hook=hook, ctx_type=ctx_type)
+        self._ctx = Context(global_this=self, hook=hook, ctx_type=ctx_type)

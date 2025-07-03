@@ -9,32 +9,34 @@ class Window(WindowProperties):
 
     def __init__(self, *args, **kw):
         super(Window, self).__init__(*args, **kw)
-
     TEMPORARY = 0
     PERSISTENT = 1
 
     def __v8_index_get__(self, *args):
         logger.debug('patch -> v8_window.py -> Window.__v8_index_get__')
-
+            
     def __v8_index_set__(self, *args):
         logger.debug('patch -> v8_window.py -> Window.__v8_index_set__')
-
+            
     def __v8_index_del__(self, *args):
         logger.debug('patch -> v8_window.py -> Window.__v8_index_del__')
-
+            
     def __v8_index_enum__(self, *args):
         logger.debug('patch -> v8_window.py -> Window.__v8_index_enum__')
-
+            
     def __v8_index_definer__(self, *args):
         logger.debug('patch -> v8_window.py -> Window.__v8_index_definer__')
-
+            
     def __v8_index_desc__(self, *args):
         logger.debug('patch -> v8_window.py -> Window.__v8_index_desc__')
-
-    __v8_attribute__ = (# (attr_name, get_cb, set_cb, CallbackType, FlagLocation, V8Attribute, FlagReceiverCheck,
+            
+    __v8_attribute__ = (
+        # (attr_name, get_cb, set_cb, CallbackType, FlagLocation, V8Attribute, FlagReceiverCheck, 
         # FlagCrossOriginCheck, FlagCrossOriginCheck, SideEffectType)
-        ("window", "get_window", None, 0, 0, 4, 0, 1, 0, 1), ("self", "get_self", "set_self", 0, 0, 0, 0, 1, 0, 1),
-        ("document", "get_document", None, 0, 0, 4, 0, 0, 0, 1), ("name", "get_name", "set_name", 0, 0, 0, 0, 0, 0, 1),
+        ("window", "get_window", None, 0, 0, 4, 0, 1, 0, 1),
+        ("self", "get_self", "set_self", 0, 0, 0, 0, 1, 0, 1),
+        ("document", "get_document", None, 0, 0, 4, 0, 0, 0, 1),
+        ("name", "get_name", "set_name", 0, 0, 0, 0, 0, 0, 1),
         ("location", "get_location", "set_location", 0, 0, 4, 0, 1, 1, 1),
         ("customElements", "get_customElements", None, 0, 0, 0, 0, 0, 0, 1),
         ("history", "get_history", None, 0, 0, 0, 0, 0, 0, 1),
@@ -48,7 +50,8 @@ class Window(WindowProperties):
         ("status", "get_status", "set_status", 0, 0, 0, 0, 0, 0, 1),
         ("closed", "get_closed", None, 0, 0, 0, 0, 1, 0, 1),
         ("frames", "get_frames", "set_frames", 0, 0, 0, 0, 1, 0, 1),
-        ("length", "get_length", "set_length", 0, 0, 0, 0, 1, 0, 1), ("top", "get_top", None, 0, 0, 4, 0, 1, 0, 1),
+        ("length", "get_length", "set_length", 0, 0, 0, 0, 1, 0, 1),
+        ("top", "get_top", None, 0, 0, 4, 0, 1, 0, 1),
         ("opener", "get_opener", "set_opener", 0, 0, 0, 0, 1, 0, 1),
         ("parent", "get_parent", "set_parent", 0, 0, 0, 0, 1, 0, 1),
         ("frameElement", "get_frameElement", None, 0, 0, 0, 0, 0, 0, 1),
@@ -80,7 +83,8 @@ class Window(WindowProperties):
         ("performance", "get_performance", "set_performance", 0, 0, 0, 0, 0, 0, 1),
         ("onappinstalled", "get_onappinstalled", "set_onappinstalled", 0, 0, 0, 0, 0, 0, 1),
         ("onbeforeinstallprompt", "get_onbeforeinstallprompt", "set_onbeforeinstallprompt", 0, 0, 0, 0, 0, 0, 1),
-        ("crypto", "get_crypto", None, 0, 0, 0, 0, 0, 0, 1), ("indexedDB", "get_indexedDB", None, 0, 0, 0, 0, 0, 0, 1),
+        ("crypto", "get_crypto", None, 0, 0, 0, 0, 0, 0, 1),
+        ("indexedDB", "get_indexedDB", None, 0, 0, 0, 0, 0, 0, 1),
         ("sessionStorage", "get_sessionStorage", None, 0, 0, 0, 0, 0, 0, 1),
         ("localStorage", "get_localStorage", None, 0, 0, 0, 0, 0, 0, 1),
         ("onbeforexrselect", "get_onbeforexrselect", "set_onbeforexrselect", 0, 0, 0, 0, 0, 0, 1),
@@ -94,9 +98,8 @@ class Window(WindowProperties):
         ("oncanplaythrough", "get_oncanplaythrough", "set_oncanplaythrough", 0, 0, 0, 0, 0, 0, 1),
         ("onchange", "get_onchange", "set_onchange", 0, 0, 0, 0, 0, 0, 1),
         ("onclick", "get_onclick", "set_onclick", 0, 0, 0, 0, 0, 0, 1),
-        ("onclose", "get_onclose", "set_onclose", 0, 0, 0, 0, 0, 0, 1), (
-        "oncontentvisibilityautostatechange", "get_oncontentvisibilityautostatechange",
-        "set_oncontentvisibilityautostatechange", 0, 0, 0, 0, 0, 0, 1),
+        ("onclose", "get_onclose", "set_onclose", 0, 0, 0, 0, 0, 0, 1),
+        ("oncontentvisibilityautostatechange", "get_oncontentvisibilityautostatechange", "set_oncontentvisibilityautostatechange", 0, 0, 0, 0, 0, 0, 1),
         ("oncontextlost", "get_oncontextlost", "set_oncontextlost", 0, 0, 0, 0, 0, 0, 1),
         ("oncontextmenu", "get_oncontextmenu", "set_oncontextmenu", 0, 0, 0, 0, 0, 0, 1),
         ("oncontextrestored", "get_oncontextrestored", "set_oncontextrestored", 0, 0, 0, 0, 0, 0, 1),
@@ -139,9 +142,9 @@ class Window(WindowProperties):
         ("onratechange", "get_onratechange", "set_onratechange", 0, 0, 0, 0, 0, 0, 1),
         ("onreset", "get_onreset", "set_onreset", 0, 0, 0, 0, 0, 0, 1),
         ("onresize", "get_onresize", "set_onresize", 0, 0, 0, 0, 0, 0, 1),
-        ("onscroll", "get_onscroll", "set_onscroll", 0, 0, 0, 0, 0, 0, 1), (
-        "onsecuritypolicyviolation", "get_onsecuritypolicyviolation", "set_onsecuritypolicyviolation", 0, 0, 0, 0, 0, 0,
-        1), ("onseeked", "get_onseeked", "set_onseeked", 0, 0, 0, 0, 0, 0, 1),
+        ("onscroll", "get_onscroll", "set_onscroll", 0, 0, 0, 0, 0, 0, 1),
+        ("onsecuritypolicyviolation", "get_onsecuritypolicyviolation", "set_onsecuritypolicyviolation", 0, 0, 0, 0, 0, 0, 1),
+        ("onseeked", "get_onseeked", "set_onseeked", 0, 0, 0, 0, 0, 0, 1),
         ("onseeking", "get_onseeking", "set_onseeking", 0, 0, 0, 0, 0, 0, 1),
         ("onselect", "get_onselect", "set_onselect", 0, 0, 0, 0, 0, 0, 1),
         ("onslotchange", "get_onslotchange", "set_onslotchange", 0, 0, 0, 0, 0, 0, 1),
@@ -152,9 +155,8 @@ class Window(WindowProperties):
         ("ontoggle", "get_ontoggle", "set_ontoggle", 0, 0, 0, 0, 0, 0, 1),
         ("onvolumechange", "get_onvolumechange", "set_onvolumechange", 0, 0, 0, 0, 0, 0, 1),
         ("onwaiting", "get_onwaiting", "set_onwaiting", 0, 0, 0, 0, 0, 0, 1),
-        ("onwebkitanimationend", "get_onwebkitanimationend", "set_onwebkitanimationend", 0, 0, 0, 0, 0, 0, 1), (
-        "onwebkitanimationiteration", "get_onwebkitanimationiteration", "set_onwebkitanimationiteration", 0, 0, 0, 0, 0,
-        0, 1),
+        ("onwebkitanimationend", "get_onwebkitanimationend", "set_onwebkitanimationend", 0, 0, 0, 0, 0, 0, 1),
+        ("onwebkitanimationiteration", "get_onwebkitanimationiteration", "set_onwebkitanimationiteration", 0, 0, 0, 0, 0, 0, 1),
         ("onwebkitanimationstart", "get_onwebkitanimationstart", "set_onwebkitanimationstart", 0, 0, 0, 0, 0, 0, 1),
         ("onwebkittransitionend", "get_onwebkittransitionend", "set_onwebkittransitionend", 0, 0, 0, 0, 0, 0, 1),
         ("onwheel", "get_onwheel", "set_onwheel", 0, 0, 0, 0, 0, 0, 1),
@@ -205,7 +207,8 @@ class Window(WindowProperties):
         ("defaultStatus", "get_defaultStatus", "set_defaultStatus", 0, 0, 0, 0, 0, 0, 1),
         ("defaultstatus", "get_defaultstatus", "set_defaultstatus", 0, 0, 0, 0, 0, 0, 1),
         ("credentialless", "get_credentialless", None, 0, 0, 0, 0, 0, 0, 1),
-        ("ai", "get_ai", "set_ai", 0, 0, 0, 0, 0, 0, 1), ("model", "get_model", "set_model", 0, 0, 0, 0, 0, 0, 1),
+        ("ai", "get_ai", "set_ai", 0, 0, 0, 0, 0, 0, 1),
+        ("model", "get_model", "set_model", 0, 0, 0, 0, 0, 0, 1),
         ("speechSynthesis", "get_speechSynthesis", None, 0, 0, 0, 0, 0, 0, 1),
         ("onfencedtreeclick", "get_onfencedtreeclick", "set_onfencedtreeclick", 0, 0, 0, 0, 0, 0, 1),
         ("onoverscroll", "get_onoverscroll", "set_onoverscroll", 0, 0, 0, 0, 0, 0, 1),
@@ -221,9 +224,9 @@ class Window(WindowProperties):
         ("caches", "get_caches", None, 0, 0, 0, 0, 0, 0, 1),
         ("cookieStore", "get_cookieStore", None, 0, 0, 0, 0, 0, 0, 1),
         ("ondevicemotion", "get_ondevicemotion", "set_ondevicemotion", 0, 0, 0, 0, 0, 0, 1),
-        ("ondeviceorientation", "get_ondeviceorientation", "set_ondeviceorientation", 0, 0, 0, 0, 0, 0, 1), (
-        "ondeviceorientationabsolute", "get_ondeviceorientationabsolute", "set_ondeviceorientationabsolute", 0, 0, 0, 0,
-        0, 0, 1), ("launchQueue", "get_launchQueue", None, 0, 0, 0, 0, 0, 0, 1),
+        ("ondeviceorientation", "get_ondeviceorientation", "set_ondeviceorientation", 0, 0, 0, 0, 0, 0, 1),
+        ("ondeviceorientationabsolute", "get_ondeviceorientationabsolute", "set_ondeviceorientationabsolute", 0, 0, 0, 0, 0, 0, 1),
+        ("launchQueue", "get_launchQueue", None, 0, 0, 0, 0, 0, 0, 1),
         ("privateAttribution", "get_privateAttribution", "set_privateAttribution", 0, 0, 0, 0, 0, 0, 1),
         ("sharedStorage", "get_sharedStorage", None, 0, 0, 0, 0, 0, 0, 1),
         ("documentPictureInPicture", "get_documentPictureInPicture", None, 0, 0, 0, 0, 0, 0, 1),
@@ -234,32 +237,46 @@ class Window(WindowProperties):
 
     )
 
-    __v8_method__ = (# (name, cb, length, CallbackType, FlagLocation, V8Attribute, FlagReceiverCheck,
+    __v8_method__ = (
+        # (name, cb, length, CallbackType, FlagLocation, V8Attribute, FlagReceiverCheck, 
         # cross_origin_check, SideEffectType)
-        ("alert", "fn_alert", 0, 0, 0, 0, 0, 0, 0), ("atob", "fn_atob", 1, 0, 0, 0, 0, 0, 0),
-        ("blur", "fn_blur", 0, 0, 0, 0, 0, 1, 0), ("btoa", "fn_btoa", 1, 0, 0, 0, 0, 0, 0),
+        ("alert", "fn_alert", 0, 0, 0, 0, 0, 0, 0),
+        ("atob", "fn_atob", 1, 0, 0, 0, 0, 0, 0),
+        ("blur", "fn_blur", 0, 0, 0, 0, 0, 1, 0),
+        ("btoa", "fn_btoa", 1, 0, 0, 0, 0, 0, 0),
         ("cancelAnimationFrame", "fn_cancelAnimationFrame", 1, 0, 0, 0, 0, 0, 0),
         ("cancelIdleCallback", "fn_cancelIdleCallback", 1, 0, 0, 0, 0, 0, 0),
         ("captureEvents", "fn_captureEvents", 0, 0, 0, 0, 0, 0, 0),
         ("clearInterval", "fn_clearInterval", 0, 0, 0, 0, 0, 0, 0),
-        ("clearTimeout", "fn_clearTimeout", 0, 0, 0, 0, 0, 0, 0), ("close", "fn_close", 0, 0, 0, 0, 0, 1, 0),
+        ("clearTimeout", "fn_clearTimeout", 0, 0, 0, 0, 0, 0, 0),
+        ("close", "fn_close", 0, 0, 0, 0, 0, 1, 0),
         ("confirm", "fn_confirm", 0, 0, 0, 0, 0, 0, 0),
-        ("createImageBitmap", "fn_createImageBitmap", 1, 0, 0, 0, 1, 0, 0), ("fetch", "fn_fetch", 1, 0, 0, 0, 1, 0, 0),
-        ("find", "fn_find", 0, 0, 0, 0, 0, 0, 0), ("focus", "fn_focus", 0, 0, 0, 0, 0, 1, 0),
+        ("createImageBitmap", "fn_createImageBitmap", 1, 0, 0, 0, 1, 0, 0),
+        ("fetch", "fn_fetch", 1, 0, 0, 0, 1, 0, 0),
+        ("find", "fn_find", 0, 0, 0, 0, 0, 0, 0),
+        ("focus", "fn_focus", 0, 0, 0, 0, 0, 1, 0),
         ("getComputedStyle", "fn_getComputedStyle", 1, 0, 0, 0, 0, 0, 1),
-        ("getSelection", "fn_getSelection", 0, 0, 0, 0, 0, 0, 1), ("matchMedia", "fn_matchMedia", 1, 0, 0, 0, 0, 0, 0),
-        ("moveBy", "fn_moveBy", 2, 0, 0, 0, 0, 0, 0), ("moveTo", "fn_moveTo", 2, 0, 0, 0, 0, 0, 0),
-        ("open", "fn_open", 0, 0, 0, 0, 0, 0, 0), ("postMessage", "fn_postMessage", 1, 0, 0, 0, 0, 1, 0),
-        ("print", "fn_print", 0, 0, 0, 0, 0, 0, 0), ("prompt", "fn_prompt", 0, 0, 0, 0, 0, 0, 0),
+        ("getSelection", "fn_getSelection", 0, 0, 0, 0, 0, 0, 1),
+        ("matchMedia", "fn_matchMedia", 1, 0, 0, 0, 0, 0, 0),
+        ("moveBy", "fn_moveBy", 2, 0, 0, 0, 0, 0, 0),
+        ("moveTo", "fn_moveTo", 2, 0, 0, 0, 0, 0, 0),
+        ("open", "fn_open", 0, 0, 0, 0, 0, 0, 0),
+        ("postMessage", "fn_postMessage", 1, 0, 0, 0, 0, 1, 0),
+        ("print", "fn_print", 0, 0, 0, 0, 0, 0, 0),
+        ("prompt", "fn_prompt", 0, 0, 0, 0, 0, 0, 0),
         ("queueMicrotask", "fn_queueMicrotask", 1, 0, 0, 0, 0, 0, 0),
         ("releaseEvents", "fn_releaseEvents", 0, 0, 0, 0, 0, 0, 0),
         ("reportError", "fn_reportError", 1, 0, 0, 0, 0, 0, 0),
         ("requestAnimationFrame", "fn_requestAnimationFrame", 1, 0, 0, 0, 0, 0, 0),
         ("requestIdleCallback", "fn_requestIdleCallback", 1, 0, 0, 0, 0, 0, 0),
-        ("resizeBy", "fn_resizeBy", 2, 0, 0, 0, 0, 0, 0), ("resizeTo", "fn_resizeTo", 2, 0, 0, 0, 0, 0, 0),
-        ("scroll", "fn_scroll", 0, 0, 0, 0, 0, 0, 0), ("scrollBy", "fn_scrollBy", 0, 0, 0, 0, 0, 0, 0),
-        ("scrollTo", "fn_scrollTo", 0, 0, 0, 0, 0, 0, 0), ("setInterval", "fn_setInterval", 1, 0, 0, 0, 0, 0, 0),
-        ("setTimeout", "fn_setTimeout", 1, 0, 0, 0, 0, 0, 0), ("stop", "fn_stop", 0, 0, 0, 0, 0, 0, 0),
+        ("resizeBy", "fn_resizeBy", 2, 0, 0, 0, 0, 0, 0),
+        ("resizeTo", "fn_resizeTo", 2, 0, 0, 0, 0, 0, 0),
+        ("scroll", "fn_scroll", 0, 0, 0, 0, 0, 0, 0),
+        ("scrollBy", "fn_scrollBy", 0, 0, 0, 0, 0, 0, 0),
+        ("scrollTo", "fn_scrollTo", 0, 0, 0, 0, 0, 0, 0),
+        ("setInterval", "fn_setInterval", 1, 0, 0, 0, 0, 0, 0),
+        ("setTimeout", "fn_setTimeout", 1, 0, 0, 0, 0, 0, 0),
+        ("stop", "fn_stop", 0, 0, 0, 0, 0, 0, 0),
         ("structuredClone", "fn_structuredClone", 1, 0, 0, 0, 0, 0, 0),
         ("webkitCancelAnimationFrame", "fn_webkitCancelAnimationFrame", 1, 0, 0, 0, 0, 0, 0),
         ("webkitRequestAnimationFrame", "fn_webkitRequestAnimationFrame", 1, 0, 0, 0, 0, 0, 0),
@@ -270,8 +287,10 @@ class Window(WindowProperties):
         ("getDigitalGoodsService", "fn_getDigitalGoodsService", 1, 0, 0, 0, 1, 0, 0),
         ("getLockScreenData", "fn_getLockScreenData", 0, 0, 0, 0, 1, 0, 0),
         ("getScreenDetails", "fn_getScreenDetails", 0, 0, 0, 0, 1, 0, 0),
-        ("maximize", "fn_maximize", 0, 0, 0, 0, 1, 0, 0), ("minimize", "fn_minimize", 0, 0, 0, 0, 1, 0, 0),
-        ("restore", "fn_restore", 0, 0, 0, 0, 1, 0, 0), ("setResizable", "fn_setResizable", 1, 0, 0, 0, 1, 0, 0),
+        ("maximize", "fn_maximize", 0, 0, 0, 0, 1, 0, 0),
+        ("minimize", "fn_minimize", 0, 0, 0, 0, 1, 0, 0),
+        ("restore", "fn_restore", 0, 0, 0, 0, 1, 0, 0),
+        ("setResizable", "fn_setResizable", 1, 0, 0, 0, 1, 0, 0),
         ("openDatabase", "fn_openDatabase", 4, 0, 0, 0, 0, 0, 0),
         ("queryLocalFonts", "fn_queryLocalFonts", 0, 0, 0, 0, 1, 0, 0),
         ("showDirectoryPicker", "fn_showDirectoryPicker", 0, 0, 0, 0, 1, 0, 0),
@@ -1923,6 +1942,15 @@ class Window(WindowProperties):
 
     def set_ondevicemotion(self, val):
         self._attr['ondevicemotion'] = val
+
+    def get_oncommand(self):
+        val = self._attr.get('oncommand')
+        if val is not None:
+            return val
+        logger.debug(f'patch -> v8_window.py -> Window.oncommand -> get attr')
+
+    def set_oncommand(self, val):
+        self._attr['oncommand'] = val
 
     def get_ondeviceorientation(self):
         val = self._attr.get('ondeviceorientation')

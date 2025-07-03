@@ -1,0 +1,11 @@
+from .flags import *
+from .v8_svg_element import SVGElement
+
+
+@construct_100001
+class SVGMetadataElement(SVGElement):
+    def __str__(self):
+        return f'[object {self.__class__.__name__}]'
+
+    def __init__(self, *args, **kw):
+        super(SVGMetadataElement, self).__init__(*args, **kw)

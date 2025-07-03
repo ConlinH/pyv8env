@@ -2,6 +2,7 @@
 # error
 from .error import *
 from .window_properties import WindowProperties
+from .chrome_impl import chrome as v8chrome
 
 # # plugins
 # from .plugins.mime_type_array import MimeTypeArray

@@ -1,4 +1,3 @@
-import sys
 from functools import wraps
 from loguru import logger
 
@@ -106,14 +105,12 @@ __hook_exclude_name = (
     "String", "Array", "Date", "Object", "window", "Symbol", "Number", "Function",
     "Symbol.toPrimitive", "Symbol.toStringTag",
     "parseFloat", "parseInt", "Math", "BigInt", "RegExp", "console", "isNaN", "Boolean",
-    "faker",  "unescape", "NaN", "Infinity", "_cf_chl_opt", "decodeURIComponent"
+    "faker",  "unescape", "NaN", "Infinity", "decodeURIComponent"
 )
 
 
 def __v8_get_hook__(self, name, value=None, error=None, ctx_type=''):
     if name in __hook_exclude_name:
-        return
-    if isinstance(name, str) and name.startswith('a1_0x'):
         return
     msg = f"{ctx_type} getter: {self.__class__.__name__}.{name} -> {value}"
     if error:
@@ -122,8 +119,6 @@ def __v8_get_hook__(self, name, value=None, error=None, ctx_type=''):
 
 
 def __v8_set_hook__(self, name, value, error, ctx_type=''):
-    if isinstance(name, str) and name.startswith('a1_0x'):
-        return
     msg = f"{ctx_type} setter: {self.__class__.__name__}.{name} = {value}"
     if error:
         msg += f", error: {error}"
@@ -756,6 +751,7 @@ exposed_names = [
     "AudioEncoder",
     "AudioWorklet",
     "BatteryManager",
+    "chrome",
     "Cache",
     "CacheStorage",
     "Clipboard",
@@ -964,7 +960,7 @@ exposed_names = [
     "XRViewport",
     "XRWebGLDepthInformation",
     "XRWebGLLayer",
-    "BackgroundFetchManager",
+"BackgroundFetchManager",
     "BackgroundFetchRecord",
     "BackgroundFetchRegistration",
     "BluetoothUUID",
